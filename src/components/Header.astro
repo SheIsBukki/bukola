@@ -1,0 +1,27 @@
+---
+import Navigation from "./Navigation.astro";
+import "../styles/global.css";
+---
+
+<header style="" class="">
+    <div class="flex justify-between items-center">
+        <!-- logo -->
+        <a class="" href="/">
+            <img class="size-12 md:size-18" src="bukola.svg" alt="logo" />
+        </a>
+
+        <Navigation />
+
+        <!-- theme toggle -->
+        <span class="justify-self-end" style="">System</span>
+    </div>
+</header>
+
+<style>
+    /*header {
+    margin-block: clamp(1.5rem, 5vmax, 5rem) clamp(1.5rem, 5vmax, 2rem);
+}*/
+
+    @media (width<750px) {
+    }
+</style>

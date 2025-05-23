@@ -1,0 +1,28 @@
+---
+const socialLinks = [
+	{ GitHub: "https://github.com/SheIsBukki" },
+	{ LinkedIn: "https://www.linkedin.com/in/bukola-ogunleye-j/" },
+	{ Bluesky: "https://bsky.app/profile/itsbukola.bsky.social" },
+];
+---
+
+<footer class="container mt-12 mx-auto w-11/12 md:w-10/12">
+	
+	<p class="">Contact</p>
+
+	<hr class="border-dashed border-0.5 my-4" />
+
+	<div class="md:flex flex-row-reverse justify-between items-center">
+		<div class="flex space-x-3 space-y-2">
+			{
+				socialLinks.map((socialLink) => (
+					<a href={`${Object.values(socialLink)}`}>{Object.keys(socialLink)}</a>
+				))
+			}
+		</div>
+
+		<p class="">
+			@ {new Date(Date.now()).getFullYear()} Bukola. All rights reserved.
+		</p>
+	</div>
+</footer>

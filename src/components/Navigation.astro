@@ -1,0 +1,103 @@
+---
+import "../styles/global.css";
+---
+
+<script>
+	const navToggle = document.querySelector('[aria-controls="primary-nav"]');
+
+	navToggle?.addEventListener("click", () => {
+		const navOpened = navToggle.getAttribute("aria-expanded");
+
+		if (navOpened === "false") {
+			navToggle.setAttribute("aria-expanded", "true");
+		} else {
+			navToggle.setAttribute("aria-expanded", "false");
+		}
+	});
+</script>
+
+<button aria-controls="primary-nav" aria-expanded="false">
+	<span class="visually-hidden">Menu</span>
+
+	<!-- Todo: replace with icons -->
+	<span class="icon-hamburger">Menu</span>
+	<span class="icon-close">Close</span>
+</button>
+
+<!-- Todo -- decide on which one to stick with -->
+<!-- class="bg-gray-100 dark:bg-gray-900" -->
+<nav id="primary-nav" class="bg-gray-100 dark:bg-gray-900 md:bg-transparent md:dark:bg-transparent" >
+	<ul class="flex space-x-8 ">
+		<li><a href="/">Home</a></li>
+		<li><a href="/about">About</a></li>
+		<li><a href="#">Blog</a></li>
+		<li><a href="#">Categories</a></li>
+		<li><a href="#">RSS</a></li>
+	</ul>
+</nav>
+
+<style>
+	button {
+		display: none;
+	}
+
+	@media (width<750px) {
+		button {
+			display: flex;
+			position: absolute;
+			z-index: 10;
+			right: 80px;
+			/*padding: 1rem;*/
+			background: transparent;
+			border: 0;
+
+			.icon-close {
+				display: none;
+			}
+		}
+		nav {
+			display: none;
+		}
+
+		[aria-expanded="true"] {
+			.icon-hamburger {
+				display: none;
+			}
+
+			.icon-close {
+				display: block;
+			}
+		}
+
+		[aria-expanded="true"] + nav {
+			display: block;
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			width: 80%;
+			margin-left: auto;
+			box-shadow: 0 0 0 100vmax hsl(0, 0, 0 / 0.4);
+
+/*Todo -- decide on the colour scheme when I set up dark/light theme modes*/
+			/*background-color:;*/
+			/*background-color: var(--colour-neutral-100);*/
+
+			ul {
+				display: grid;
+				gap: 2rem;
+				font-size: var(--fs-600);
+				margin-top: 20vh;
+				margin-left: 3rem;
+			}
+
+			a {
+				/*color: var(--colour-neutral-900);*/
+
+				&:hover,
+				&:focus-visible {
+					/*color: var(--colour-accent-400);*/
+				}
+			}
+		}
+	}
+</style>
