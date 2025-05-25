@@ -4,6 +4,28 @@
   --colour-neutral-100: hsl(48, 71%, 99%);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: linen;
+  color: black;
+  font-family: sans-serif;
+}
+
+/*Dark/light toggle*/
+html.dark {
+  background-color: #1f2022;
+  color: #fff;
+}
+
+.dark .nav-links a {
+  color: #fff;
+}
+
 body {
   margin: 0 auto;
   width: 100%;

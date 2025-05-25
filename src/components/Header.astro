@@ -1,19 +1,21 @@
 ---
 import Navigation from "./Navigation.astro";
 import "../styles/global.css";
+import ThemeManager from "./ThemeManager.astro";
 ---
 
 <header style="" class="">
     <div class="flex justify-between items-center">
         <!-- logo -->
         <a class="" href="/">
-            <img class="size-12 md:size-18" src="/bukola.svg" alt="logo" />
+            <img class="size-16 md:size-18" src="/bukola.svg" alt="logo" />
         </a>
 
         <Navigation />
 
         <!-- theme toggle -->
-        <span class="justify-self-end" style="">System</span>
+        <ThemeManager/>
+
     </div>
 </header>
 
