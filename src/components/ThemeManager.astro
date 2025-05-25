@@ -1,0 +1,67 @@
+---
+---
+
+<div class="select-theme-wrapper relative">
+  <select name="theme-switcher" id="theme-switcher" class="text-2xl">
+    <option id="system" value="system">
+      🖥️
+    </option>
+    <option class="" value="dark" >☾
+    </option>
+    <option value="light" class="" 
+      >☀️
+    </option>
+  </select>
+</div>
+
+<style>
+  :global(.dark) {
+    color-scheme: dark;
+  }
+
+  select {
+    width: 100%;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    transition: 200ms;
+
+    &:focus {
+      outline: none;
+      border: 0;
+    }
+  }
+</style>
+
+<!-- If I add is:inline attribute to the script, I will have to remove the type assertions, which is not a problem but I just want to leave it like this for now -->
+<script>
+
+  const select = document.getElementById("theme-switcher") as HTMLSelectElement;
+  const theme = localStorage.getItem("theme");
+  const systemTheme = window.matchMedia("(prefers-color-scheme:dark)").matches
+    ? "dark"
+    : "light";
+
+  if (theme !== null) {
+    select.value = theme;
+  } else {
+    select.value = systemTheme;
+  }
+
+  function updateTheme(value: string) {
+    const theme = value === "system" ? systemTheme : value;
+
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+
+    localStorage.setItem("theme", value);
+  }
+
+  updateTheme(select.value);
+
+  select.addEventListener("change", (event: Event) => {
+    const select = event.target as HTMLSelectElement;
+    updateTheme(select.value);
+  });
+
+</script>

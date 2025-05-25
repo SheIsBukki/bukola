@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { Icon } from "astro-icon/components";
 ---
 
 <script>
@@ -19,15 +20,18 @@ import "../styles/global.css";
 <button aria-controls="primary-nav" aria-expanded="false">
 	<span class="visually-hidden">Menu</span>
 
-	<!-- Todo: replace with icons -->
-	<span class="icon-hamburger">Menu</span>
-	<span class="icon-close">Close</span>
+	<span class="icon-hamburger">
+		<span class="visually-hidden" sr-only>Menu</span>
+		<Icon name="tabler:baseline-density-medium" size="24px" />
+	</span>
+	<span class="icon-close text-gray-900 dark:text-gray-100"
+		><span class="visually-hidden" sr-only>Close</span>
+		<Icon name="tabler:x" size="24px" />
+	</span>
 </button>
 
-<!-- Todo -- decide on which one to stick with -->
-<!-- class="bg-gray-100 dark:bg-gray-900" -->
-<nav id="primary-nav" class="bg-gray-100 dark:bg-gray-900 md:bg-transparent md:dark:bg-transparent" >
-	<ul class="flex space-x-8 ">
+<nav id="primary-nav" class="">
+	<ul class="flex space-x-8">
 		<li><a href="/">Home</a></li>
 		<li><a href="/about">About</a></li>
 		<li><a href="#">Blog</a></li>
@@ -41,13 +45,19 @@ import "../styles/global.css";
 		display: none;
 	}
 
+	@media (prefers-color-scheme: dark) {
+		[aria-expanded="true"] + nav {
+			background-color: #1f2022;
+			color: white;
+		}
+	}
+
 	@media (width<750px) {
 		button {
 			display: flex;
 			position: absolute;
 			z-index: 10;
-			right: 80px;
-			/*padding: 1rem;*/
+			right: 50px;
 			background: transparent;
 			border: 0;
 
@@ -55,6 +65,7 @@ import "../styles/global.css";
 				display: none;
 			}
 		}
+
 		nav {
 			display: none;
 		}
@@ -77,10 +88,6 @@ import "../styles/global.css";
 			width: 80%;
 			margin-left: auto;
 			box-shadow: 0 0 0 100vmax hsl(0, 0, 0 / 0.4);
-
-/*Todo -- decide on the colour scheme when I set up dark/light theme modes*/
-			/*background-color:;*/
-			/*background-color: var(--colour-neutral-100);*/
 
 			ul {
 				display: grid;
