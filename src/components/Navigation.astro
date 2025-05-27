@@ -24,7 +24,7 @@ import { Icon } from "astro-icon/components";
 		<span class="visually-hidden" sr-only>Menu</span>
 		<Icon name="tabler:baseline-density-medium" size="24px" />
 	</span>
-	<span class="icon-close text-gray-900 dark:text-gray-100"
+	<span class="icon-close text-gray-100"
 		><span class="visually-hidden" sr-only>Close</span>
 		<Icon name="tabler:x" size="24px" />
 	</span>
@@ -34,7 +34,7 @@ import { Icon } from "astro-icon/components";
 	<ul class="flex space-x-8">
 		<li><a href="/">Home</a></li>
 		<li><a href="/about">About</a></li>
-		<li><a href="#">Blog</a></li>
+		<li><a href="/blog">Blog</a></li>
 		<li><a href="#">Categories</a></li>
 		<li><a href="#">RSS</a></li>
 	</ul>
@@ -45,12 +45,12 @@ import { Icon } from "astro-icon/components";
 		display: none;
 	}
 
-	@media (prefers-color-scheme: dark) {
+	/*@media (prefers-color-scheme: dark) {
 		[aria-expanded="true"] + nav {
 			background-color: #1f2022;
 			color: white;
 		}
-	}
+	}*/
 
 	@media (width<750px) {
 		button {
@@ -88,6 +88,8 @@ import { Icon } from "astro-icon/components";
 			width: 80%;
 			margin-left: auto;
 			box-shadow: 0 0 0 100vmax hsl(0, 0, 0 / 0.4);
+			background-color: #1f2022;
+			color: white;
 
 			ul {
 				display: grid;

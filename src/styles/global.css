@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --colour-neutral-100: hsl(48, 71%, 99%);
-}
-
 *,
 *::before,
 *::after {
@@ -11,9 +7,13 @@
 }
 
 html {
-  background-color: linen;
+  /*background-color: #9775fa02;*/
+  background-color: #fff;
   color: black;
   font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 /*Dark/light toggle*/
@@ -43,3 +43,26 @@ body {
   white-space: nowrap;
   width: 1px;
 }
+
+/*This two rulesets don't work because my media query for dark mode is broken, I think there's a conflict between pure css and tailwindcss, so I have to implement tailwind properly tomorrow */
+.astro-code,
+.github-dark {
+  background-color: white;
+  color: #24292e;
+  padding: 30px;
+
+  /*I like it but I don't know if it is ideal to wrap code blocks*/
+  /*text-wrap: wrap; */
+}
+
+@media (prefers-color-scheme: dark) {
+  .astro-code,
+  .github-dark {
+    background-color: #24292e;
+    color: #e1e4e8;
+  }
+}
+
+/*pre.astro-code > code > span {
+  margin-inline: 24px;
+}*/

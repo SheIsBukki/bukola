@@ -1,0 +1,49 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+    <div class="flex space-y-6 flex-col">
+        <h1 class="font-bold text-2xl md:text-3xl">{frontmatter.title}</h1>
+        
+        <div class="text-sm flex items-center gap-2">
+            <span>{new Date(frontmatter.pubDate).toDateString()}</span>
+            <span>&bullet;</span>
+            <span>8 minutes read</span>
+        </div>
+
+        <!-- Tags -->
+        <div class="tags items-center gap-2 w-full flex flex-wrap text-xs">
+            {
+                frontmatter.tags.map((tag: string) => (
+                    <p class="border-[0.25px] py-1 px-2  rounded-xl">
+                        <a href="#">{tag}</a>
+                    </p>
+                ))
+            }
+        </div>
+
+        {
+            frontmatter.description && (
+                <blockquote class="p-4 shadow opacity-80 backdrop-opacity-50 border-l-6">{frontmatter.description}</blockquote>
+            )
+        }
+        {
+            frontmatter.image.url && (
+                <figure class="w-full md:h-[240px] ">
+                    <img class="h-full w-full object-fit md:aspect-auto"
+                        src={frontmatter.image.url}
+                        alt={frontmatter.image.alt}
+                    />
+                </figure>
+            )
+        }
+        <slot />
+    </div>
+</BaseLayout>
+
+<style>
+    
+</style>
