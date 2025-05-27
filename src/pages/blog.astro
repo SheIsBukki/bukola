@@ -1,0 +1,24 @@
+---
+// import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogCard from "../components/BlogCard.astro";
+
+const pageTitle = "Blog Page";
+// const allPosts = await getCollection('blog')
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	<h1 class="italic text-3xl mb-12">Blog Archive</h2>
+	<BlogCard />
+</BaseLayout>
+
+
+
+
+
+<!-- I will use this if I fetch the posts here -->
+<!-- <div class="">
+		{allPosts.map(post =>(
+			<BlogCard url={`/posts/${post.id}/`} title={post.data.title} />
+			))}
+	</div> -->
