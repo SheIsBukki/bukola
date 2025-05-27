@@ -6,7 +6,7 @@ const socialLinks = [
 ];
 ---
 
-<footer class="container mt-12 mx-auto w-11/12 md:w-10/12">
+<footer class="container mt-12 py-4 mx-auto w-11/12 md:w-10/12">
 	
 	<p class="">Contact</p>
 
@@ -16,7 +16,7 @@ const socialLinks = [
 		<div class="flex space-x-3 space-y-2">
 			{
 				socialLinks.map((socialLink) => (
-					<a href={`${Object.values(socialLink)}`}>{Object.keys(socialLink)}</a>
+					<a target="_blank" href={`${Object.values(socialLink)}`}>{Object.keys(socialLink)}</a>
 				))
 			}
 		</div>
