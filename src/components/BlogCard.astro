@@ -1,9 +1,5 @@
 ---
-// Since I'm fetching the posts here...
-// const {title, url} = Astro.props
-
-import { getCollection } from "astro:content";
-const allPosts = await getCollection("blog");
+const { title, url, html, pubDate, description } = Astro.props;
 
 function removeTags(htmlContent: string | undefined) {
 	if (htmlContent === null || htmlContent === "") return false;
@@ -14,34 +10,34 @@ function removeTags(htmlContent: string | undefined) {
 ---
 
 <div class="">
-	{
-		allPosts.map((post) => (
-			<div class="space-y-2 mb-10">
-				<h2 class="md:text-xl text-lg">
-					<a class="hover:underline  hover:underline-offset-2 hover:decoration-from-font hover:decoration-wavy" href={`/posts/${post.id}/`}>
-						{post.data.title}
-					</a>
-				</h2>
+	<div class="space-y-2 mb-10">
+		<h2 class="md:text-xl text-lg">
+			<a
+				class="hover:underline hover:underline-offset-2 hover:decoration-from-font hover:decoration-wavy"
+				href={url}
+			>
+				{title}
+			</a>
+		</h2>
 
-				<div class="flex text-sm opacity-80 space-x-2 items-center">
-					<span>
-						{new Date(post.data.pubDate).toDateString()}
-					</span>
-					<span class="">&bull;</span>
-					<span class="">8 minutes read</span>
-				</div>
+		<div class="flex text-sm opacity-80 space-x-2 items-center">
+			<span>
+				{new Date(pubDate).toDateString()}
+			</span>
+			<span class="">&bull;</span>
+			<span class="">8 minutes read</span>
+		</div>
 
-				{post.data.description ? (
-					<p class="line-clamp-3 text-sm md:text-base opacity-80">{post.data.description}</p>
-				) : (
-					<p class="line-clamp-3 text-sm md:text-base opacity-80">
-						{removeTags(post.rendered?.html)}
-					</p>
-				)}
-			</div>
-		))
-	}
+		{
+			description ? (
+				<p class="line-clamp-3 text-sm md:text-base opacity-80">
+					{description}
+				</p>
+			) : (
+				<p class="line-clamp-3 text-sm md:text-base opacity-80">
+					{removeTags(html)}
+				</p>
+			)
+		}
+	</div>
 </div>
-
-<!-- Since I am fetching the posts here... -->
-<!-- <p><a href={url}>{title}</a></p> -->
