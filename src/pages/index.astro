@@ -17,7 +17,8 @@ const latestPosts = allPosts
 			return 1;
 		}
 		return 0;
-	}).slice(0,3)
+	})
+	.slice(0, 3);
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -25,14 +26,23 @@ const latestPosts = allPosts
 
 	<div class="mt-24">
 		<h3 class="italic mb-8 md:text-xl">Recent Posts</h3>
-		{latestPosts.map((post)=>
-		<BlogCard title={post.data.title} pubDate={post.data.pubDate} description={post.data.description} html={post.rendered?.html} url={`/posts/${post.id}`} />
-			)}
+		{
+			latestPosts.map((post) => (
+				<BlogCard
+					title={post.data.title}
+					pubDate={post.data.pubDate}
+					description={post.data.description}
+					html={post.rendered?.html}
+					url={`/posts/${post.id}`}
+				/>
+			))
+		}
 
 		<p>
 			<a
 				class="mx-auto md:mx-0 pb-4 motion-reduce:transition-none motion-reduce:hover:transform-none text-sm md:text-base relative cursor-pointer after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-current after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-in-out"
-				href="/blog">Read all posts</a>
+				href="/blog">Read all posts</a
+			>
 		</p>
 	</div>
 </BaseLayout>
