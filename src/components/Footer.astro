@@ -1,28 +1,29 @@
 ---
 const socialLinks = [
-	{ GitHub: "https://github.com/SheIsBukki" },
-	{ LinkedIn: "https://www.linkedin.com/in/bukola-ogunleye-j/" },
-	{ Bluesky: "https://bsky.app/profile/itsbukola.bsky.social" },
+  { GitHub: "https://github.com/SheIsBukki" },
+  { LinkedIn: "https://www.linkedin.com/in/bukola-ogunleye-j/" },
+  { Bluesky: "https://bsky.app/profile/itsbukola.bsky.social" },
 ];
 ---
 
-<footer class="container mt-12 py-4 mx-auto w-11/12 md:w-10/12">
-	
-	<p class="">Contact</p>
+<footer class="container mx-auto mt-12 w-11/12 py-4 md:w-10/12">
+  <p class="">Contact</p>
 
-	<hr class="border-dashed border-0.5 my-4" />
+  <hr class="border-0.5 my-4 border-dashed" />
 
-	<div class="md:flex flex-row-reverse justify-between items-center">
-		<div class="flex space-x-3 space-y-2">
-			{
-				socialLinks.map((socialLink) => (
-					<a target="_blank" href={`${Object.values(socialLink)}`}>{Object.keys(socialLink)}</a>
-				))
-			}
-		</div>
+  <div class="flex-row-reverse items-center justify-between md:flex">
+    <div class="flex space-y-2 space-x-3">
+      {
+        socialLinks.map((socialLink) => (
+          <a target="_blank" href={`${Object.values(socialLink)}`}>
+            {Object.keys(socialLink)}
+          </a>
+        ))
+      }
+    </div>
 
-		<p class="">
-			&COPY; {new Date(Date.now()).getFullYear()} Bukola. All rights reserved.
-		</p>
-	</div>
+    <p class="">
+      &COPY; {new Date(Date.now()).getFullYear()} Bukola. All rights reserved.
+    </p>
+  </div>
 </footer>

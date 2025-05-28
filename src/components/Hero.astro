@@ -2,52 +2,50 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="hero-wrapper md:shadow-[24px_24px_#9775fa] md:mt-16 mb-12">
-	<div
-		class="mx-auto hero-content box-shadow text-white p-4 md:p-12 space-y-8 text-center md:text-left
-			md:shadow-[24px_-24px_#9775fa]
-bg-[repeating-linear-gradient(45deg,#9775fa,#000_4px,#9775fa_4px,#9775fa_4px)]"
-	>
-		<h2
-			class="flex w-fit flex-col text-2xl md:text-3xl font-bold border-b-4 text-balance"
-		>
-			<span>Writing about frontend development,</span>
-			<span>product management, and</span>
-			<span>content and technical writing experiences.</span>
-		</h2>
-		<p class="text-lg">
-			Welcome to my little internet abode. My name is Bukola. I am a technical
-			writer, product manager, and frontend developer, finally sharing my
-			thoughts in a blog.
-		</p>
+<div class="hero-wrapper mb-12 md:mt-16 md:shadow-[24px_24px_#9775fa]">
+  <div
+    class="hero-content box-shadow mx-auto space-y-8 bg-[repeating-linear-gradient(45deg,#9775fa,#000_4px,#9775fa_4px,#9775fa_4px)] p-4 text-center text-white md:p-12 md:text-left md:shadow-[24px_-24px_#9775fa]"
+  >
+    <h2
+      class="flex w-fit flex-col border-b-4 text-2xl font-bold text-balance md:text-3xl"
+    >
+      <span>Writing about frontend development,</span>
+      <span>product management, and</span>
+      <span>content and technical writing experiences.</span>
+    </h2>
+    <p class="text-lg">
+      Welcome to my little internet abode. My name is Bukola. I am a technical
+      writer, product manager, and frontend developer, finally sharing my
+      thoughts in a blog.
+    </p>
 
-		<a
-			href="/about"
-			class="mx-auto md:mx-0 pb-4 flex gap-2 w-fit motion-reduce:transition-none motion-reduce:hover:transform-none md:justify-start justify-center items-center text-sm md:text-base relative cursor-pointer after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-current after:scale-x-0 after:origin-left hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-in-out"
-		>
-			<span>More about me </span>
-			<Icon
-				class="opacity-60 dark:opacity-100"
-				size="20"
-				name="tabler:arrow-right"
-			/>
-		</a>
-	</div>
+    <a
+      href="/about"
+      class="relative mx-auto flex w-fit cursor-pointer items-center justify-center gap-2 pb-4 text-sm after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:after:scale-x-100 motion-reduce:transition-none motion-reduce:hover:transform-none md:mx-0 md:justify-start md:text-base"
+    >
+      <span>More about me </span>
+      <Icon
+        class="opacity-60 dark:opacity-100"
+        size="20"
+        name="tabler:arrow-right"
+      />
+    </a>
+  </div>
 </div>
 
 <style>
-	h2,
-	p,
-	a {
-		animation: fly-up 2s ease-in-out;
-	}
+  h2,
+  p,
+  a {
+    animation: fly-up 2s ease-in-out;
+  }
 
-	@keyframes fly-up {
-		0% {
-			transform: translateY(200%);
-		}
-		100% {
-			transform: translateY(0%);
-		}
-	}
+  @keyframes fly-up {
+    0% {
+      transform: translateY(200%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
 </style>

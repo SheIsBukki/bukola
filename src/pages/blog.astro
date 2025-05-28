@@ -7,28 +7,28 @@ const pageTitle = "Blog Page";
 
 const allPosts = await getCollection("blog");
 const latestPosts = allPosts.sort((a, b) => {
-	if (a.data.pubDate > b.data.pubDate) {
-		return -1;
-	}
-	if (a.data.pubDate < b.data.pubDate) {
-		return 1;
-	}
-	return 0;
+  if (a.data.pubDate > b.data.pubDate) {
+    return -1;
+  }
+  if (a.data.pubDate < b.data.pubDate) {
+    return 1;
+  }
+  return 0;
 });
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<h1 class="italic text-3xl mb-12">Blog Archive</h1>
+  <h1 class="mb-12 text-3xl italic">Blog Archive</h1>
 
-	{
-		latestPosts.map((post) => (
-			<BlogCard
-				url={`/posts/${post.id}/`}
-				title={post.data.title}
-				pubDate={post.data.pubDate}
-				description={post.data.description}
-				html={post.rendered?.html}
-			/>
-		))
-	}
+  {
+    latestPosts.map((post) => (
+      <BlogCard
+        url={`/posts/${post.id}/`}
+        title={post.data.title}
+        pubDate={post.data.pubDate}
+        description={post.data.description}
+        html={post.rendered?.html}
+      />
+    ))
+  }
 </BaseLayout>

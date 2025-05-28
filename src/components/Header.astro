@@ -5,25 +5,24 @@ import ThemeManager from "./ThemeManager.astro";
 ---
 
 <header style="" class="mb-6 md:mb-8">
-    <div class="flex justify-between items-center">
-        <!-- logo -->
-        <a class="" href="/">
-            <img class="size-16 md:size-18" src="/bukola.svg" alt="logo" />
-        </a>
+  <div class="flex items-center justify-between">
+    <!-- logo -->
+    <a class="" href="/">
+      <img class="size-16 md:size-18" src="/bukola.svg" alt="logo" />
+    </a>
 
-        <Navigation />
+    <Navigation />
 
-        <!-- theme toggle -->
-        <ThemeManager/>
-
-    </div>
+    <!-- theme toggle -->
+    <ThemeManager />
+  </div>
 </header>
 
 <style>
-    /*header {
+  /*header {
     margin-block: clamp(1.5rem, 5vmax, 5rem) clamp(1.5rem, 5vmax, 2rem);
 }*/
 
-    @media (width<750px) {
-    }
+  @media (width<750px) {
+  }
 </style>
