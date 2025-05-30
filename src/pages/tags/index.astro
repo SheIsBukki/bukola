@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AllTags from "../../components/AllTags.astro";
+
+const pageTitle = "Tag Page";
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  className="container mx-auto w-11/12 md:w-10/12"
+>
+  <h1 class="mb-12 text-3xl italic">Tags & Categories</h1>
+  <AllTags className="flex w-full flex-wrap items-center gap-4 text-balance" />
+</BaseLayout>

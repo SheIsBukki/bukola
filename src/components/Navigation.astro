@@ -32,11 +32,11 @@ import { Icon } from "astro-icon/components";
 
 <nav id="primary-nav" class="">
   <ul class="flex space-x-8">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="#">Categories</a></li>
-    <li><a href="#">RSS</a></li>
+    <li><a href="/" class="border-animation">Home</a></li>
+    <li><a href="/about" class="border-animation">About</a></li>
+    <li><a href="/posts" class="border-animation">Blog</a></li>
+    <li><a href="/tags" class="border-animation md:hidden">Tags</a></li>
+    <!-- <li><a href="#">RSS</a></li> -->
   </ul>
 </nav>
 
@@ -97,15 +97,6 @@ import { Icon } from "astro-icon/components";
         font-size: var(--fs-600);
         margin-top: 20vh;
         margin-left: 3rem;
-      }
-
-      a {
-        /*color: var(--colour-neutral-900);*/
-
-        &:hover,
-        &:focus-visible {
-          /*color: var(--colour-accent-400);*/
-        }
       }
     }
   }
