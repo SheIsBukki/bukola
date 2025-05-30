@@ -1,0 +1,136 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import PaginationButton from "../../components/PaginationButton.astro";
+import AllTags from "../../components/AllTags.astro";
+import SearchFunctionality from "../../components/SearchFunctionality.astro";
+
+const pageTitle = "Blog Page";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = await getCollection("blog");
+
+  const latestPosts = allPosts.sort((a, b) => {
+    if (a.data.pubDate > b.data.pubDate) {
+      return -1;
+    }
+    if (a.data.pubDate < b.data.pubDate) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return paginate(latestPosts, { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  className="container mx-auto w-11/12 md:w-full"
+>
+  <div class="gap-8 md:grid md:grid-cols-4">
+    <!-- All tags -->
+    <div class="sticky top-[5rem] bottom-1/3 block md:static md:col-span-1">
+      <div class="mb-12">
+        <SearchFunctionality />
+      </div>
+
+      <div
+        class="sticky top-[5rem] bottom-1/3 my-auto mt-16 hidden border-r-8 border-current/50 py-2 align-middle text-balance shadow drop-shadow-current md:block"
+      >
+        <h2 class="mb-8 text-center text-2xl italic">Tags & Categories</h2>
+        <div class="px-6">
+          <AllTags
+            className="tags mx-auto flex flex-col space-y-3 opacity-80 md:text-sm lg:text-base"
+          />
+          <p class="border-animation mt-8 w-fit">
+            <a href="/tags">See all tags</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog cards -->
+    <div class="md:col-span-3">
+      <h1 class="mb-12 text-3xl italic">Blog Archive</h1>
+
+      <!-- Blog cards -->
+      {
+        page.data.map((post) => (
+          <BlogCard
+            url={`/posts/${post.id}/`}
+            title={post.data.title}
+            pubDate={post.data.pubDate}
+            description={post.data.description}
+            html={post.rendered?.html}
+          />
+        ))
+      }
+
+      <!-- Pagination -->
+      <div class="flex items-center justify-between text-sm">
+        <span class="flex items-center gap-1 md:gap-2">
+          {
+            page.url.first ? (
+              <PaginationButton
+                className="flex border-animation"
+                icon="mdi:page-first"
+                name="First"
+                pageUrl={page.url.first}
+              />
+            ) : null
+          }
+
+          {
+            page.url.prev ? (
+              <PaginationButton
+                className="flex border-animation"
+                icon="mdi:chevron-left"
+                name="Previous"
+                pageUrl={page.url.prev}
+              />
+            ) : null
+          }
+        </span>
+
+        <!-- I can put dynamic incremental pagination numbers here to show a group of 5 numbers max at once, so it can be something like this first previous 2 3 4 5 6 ... next last -->
+        <!-- I can use a for loop to generate an incremental static group of 5 numbers but I might not be able to make the numbers change depending on the what page the user is on, so... -->
+
+        <span class="flex items-center gap-1 md:gap-2">
+          {
+            page.url.next ? (
+              <PaginationButton
+                className="flex border-animation flex-row-reverse"
+                icon="mdi:chevron-right"
+                name="Next"
+                pageUrl={page.url.next}
+              />
+            ) : null
+          }
+
+          {
+            page.url.last ? (
+              <PaginationButton
+                className="flex border-animation flex-row-reverse"
+                icon="mdi:page-last"
+                name="Last"
+                pageUrl={page.url.last}
+              />
+            ) : null
+          }
+        </span>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<!-- I don't need this until I have a bazillion number of pages -->
+<!-- <div class="flex justify-center gap-2">
+      <span>Page {page.currentPage}</span>
+      <span>Total pages: {page.total / page.size}</span>
+    </div> -->

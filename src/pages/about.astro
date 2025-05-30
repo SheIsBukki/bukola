@@ -3,18 +3,82 @@ import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "About";
+
+const stack = [
+  "Html",
+  "Css",
+  "JavaScript",
+  "Typescript",
+  "React",
+  "Vue",
+  "Nuxt",
+  "Next",
+  "Astro",
+  "Drizzle",
+  "Prisma",
+  "Sanity",
+  "prismic",
+  "Git/version control",
+  "Postgresql",
+  "Cloudflare",
+  "Vercel",
+  "Netlify",
+  "Supabase",
+  "Neon",
+  "Turso",
+  "Sqlite",
+  "Sql",
+  "Stripe",
+];
+const thingsOfChoice = [
+  { Device: ["M1 14”Macbook Pro", "iPhone 13 Pro"] },
+  {
+    Editor: [
+      { "Sublime text": "daily driver" },
+      { Webstorm: "supporting editor" },
+      { Zed: "Others" },
+      { Vscode: "Others" },
+    ],
+  },
+  {
+    "Editor theme": [
+      {
+        "Sublime text":
+          "a heavily customised ayu-dark color scheme, and gruvbox theme",
+      },
+      { Webstorm: "nightfall" },
+      { Zed: "nightowl (italics)" },
+      { Vscode: "tokyo night" },
+    ],
+  },
+  { Shell: ["Zsh", "Ohmyzsh"] },
+  { "Note taking": "Apple Note app" },
+  {
+    Browser: [
+      { Safari: "daily driver" },
+      { "Google chrome": "supporting browser" },
+      { Orion: "second supporting browser" },
+      { "Opera mini": "mainly for movies and tv shows" },
+    ],
+  },
+];
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-  <h1>About Page</h1>
+<BaseLayout
+  pageTitle={pageTitle}
+  className="container mx-auto w-11/12 md:w-10/12"
+>
   <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus assumenda,
-    velit maiores earum sint impedit veritatis dolores accusantium eveniet,
-    omnis cum aspernatur, exercitationem hic totam, facere dicta quas at?
-    Facilis.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quo in,
+    blanditiis minima iste nesciunt, similique voluptate ex beatae nemo, fugit
+    voluptates temporibus exercitationem incidunt perspiciatis et dignissimos
+    officia repellendus.
   </p>
-  <button
-    class="bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3"
-    >Prettier</button
-  >
+
+  <p class="mt-8">Stack</p>
+  <ul class="flex flex-wrap items-center justify-center gap-2 text-balance">
+    {stack.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <p class="mt-8">Things of choice</p>
 </BaseLayout>

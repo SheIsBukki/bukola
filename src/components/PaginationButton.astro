@@ -1,0 +1,16 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { name, icon, pageUrl, className } = Astro.props;
+---
+
+<>
+  {
+    (
+      <a href={pageUrl} class={className}>
+        <Icon name={icon} size="20" />
+        <span>{name}</span>
+      </a>
+    )
+  }
+</>
