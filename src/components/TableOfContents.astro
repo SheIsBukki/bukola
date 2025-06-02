@@ -1,0 +1,11 @@
+---
+const { headingText, headingSlug, className } = Astro.props;
+---
+
+<ul class={className}>
+  <li class="">
+    <a href={`#${headingSlug}`}>{headingText}</a>
+  </li>
+</ul>
+
+<!-- I have no use for this for now... I might delete it later -->

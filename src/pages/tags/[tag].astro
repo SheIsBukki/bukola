@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import type { GetStaticPaths } from "astro";
+import slugify from "slugify";
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogCard from "../../components/BlogCard.astro";
 
@@ -30,11 +32,12 @@ const { posts } = Astro.props;
     {
       posts.map((post: any) => (
         <BlogCard
-          url={`/posts/${post.id}/`}
+          url={`/posts/${slugify(post.data.title).toLowerCase()}/`}
           title={post.data.title}
           pubDate={post.data.pubDate}
           description={post.data.description}
-          html={post.rendered?.html}
+          html={post.body}
+          minutesRead={post?.rendered?.metadata?.frontmatter?.minutesRead}
         />
       ))
     }

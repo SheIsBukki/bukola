@@ -1,53 +1,124 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
+import type { MarkdownHeading } from "astro";
+import clsx from "clsx";
+import slugify from "slugify";
 
-const { frontmatter } = Astro.props;
+import BaseLayout from "./BaseLayout.astro";
+import { removeTags } from "../utils/helpers";
+
+const { entry, body, ...frontmatter } = Astro.props;
+
+const baseUrl = import.meta.env.DEV
+  ? "http://localhost:4321"
+  : new URL(Astro.request.url).origin;
+
+const ogImage = new URL(
+  `/open-graph/${slugify(frontmatter.title).toLowerCase()}.png`,
+  baseUrl,
+).toString();
 ---
 
 <BaseLayout
+  description={frontmatter.description
+    ? frontmatter.description.slice(0, 160)
+    : removeTags(body)}
+  ogImage={ogImage}
+  ogType={`article`}
+  baseUrl={baseUrl}
   pageTitle={frontmatter.title}
-  className="container mx-auto w-11/12 md:w-full"
+  className={clsx("container mx-auto w-11/12 md:w-10/12", {
+    "md:w-full": frontmatter.headings.length > 0,
+  })}
 >
-  <div class="flex flex-col space-y-6">
-    <h1 class="text-2xl font-bold md:text-3xl">{frontmatter.title}</h1>
-
-    <div class="flex items-center gap-2 text-sm">
-      <span>{new Date(frontmatter.pubDate).toDateString()}</span>
-      <span>&bullet;</span>
-      <span>8 minutes read</span>
-    </div>
-
-    <!-- Tags -->
-    <div class="tags flex w-full flex-wrap items-center gap-2 text-xs">
-      {
-        frontmatter.tags.map((tag: string) => (
-          <p class="rounded-xl border-[0.25px] border-current bg-[#9775fa] px-2 py-1 text-white">
-            <a href={`/tags/${tag}`}>#{tag}</a>
-          </p>
-        ))
-      }
-    </div>
-
+  <div
+    class={clsx({
+      "gap-8 md:grid md:grid-cols-4": frontmatter.headings.length > 0,
+    })}
+  >
+    <!--LARGE VIEWPORT TABLE OF CONTENT -->
     {
-      frontmatter.description && (
-        <blockquote class="border-l-6 p-4 opacity-80 shadow backdrop-opacity-50">
-          {frontmatter.description}
-        </blockquote>
+      frontmatter.headings.length > 0 && (
+        <div class="top-0 bottom-1/3 order-first my-auto py-2 align-middle text-balance md:sticky md:top-[5rem] md:col-span-1 md:mt-16 md:border-r-8 md:border-current/50 md:shadow md:drop-shadow-current">
+          <>
+            <h2 class="text-l mb-4 hidden text-center italic md:mb-8 md:block md:text-2xl">
+              On this page
+            </h2>
+
+            <ul class="hidden flex-col space-y-3 overflow-auto px-6 text-sm opacity-80 md:flex md:justify-baseline lg:text-base">
+              {frontmatter.headings.map((heading: MarkdownHeading) => (
+                <li class="">
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ul>
+          </>
+        </div>
       )
     }
-    {
-      frontmatter?.image?.url && (
-        <figure class="w-full md:h-[240px]">
-          <img
-            class="object-fit h-full w-full md:aspect-auto"
-            src={frontmatter.image.url}
-            alt={frontmatter.image.alt}
-          />
-        </figure>
-      )
-    }
-    <slot />
+
+    <!-- BLOG CONTENT -->
+    <div class="md:order-1 md:col-span-3">
+      <div class="flex flex-col space-y-6">
+        <h1 class="block text-2xl font-bold md:text-3xl">
+          {frontmatter.title}
+        </h1>
+
+        <div class="flex items-center gap-2 text-sm">
+          <span>{new Date(frontmatter.pubDate).toDateString()}</span>
+          <span>&bullet;</span>
+          <span>{frontmatter.minutesRead}</span>
+        </div>
+
+        <!-- Tags -->
+        <div class="tags flex w-full flex-wrap items-center gap-2 text-xs">
+          {
+            frontmatter.tags.map((tag: string) => (
+              <p class="rounded-xl border-[0.25px] border-current bg-[#9775fa] px-2 py-1 text-white">
+                <a href={`/tags/${tag}`}>#{tag}</a>
+              </p>
+            ))
+          }
+        </div>
+
+        <!-- SMALL VIEWPORT TABLE OF CONTENTS -->
+        {
+          frontmatter.headings.length > 0 && (
+            <div class="p-4 shadow md:hidden">
+              <h2 class="text-l mb-4 block md:mb-8 md:hidden md:text-2xl">
+                On this page
+              </h2>
+
+              <ul class="flex max-h-[10rem] flex-col space-y-2 overflow-auto text-sm opacity-80 md:hidden">
+                {frontmatter.headings.map((heading: MarkdownHeading) => (
+                  <li class="">
+                    <a href={`#${heading.slug}`}>{heading.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+
+        {
+          frontmatter.description && (
+            <blockquote class="border-l-6 p-4 opacity-80 shadow backdrop-opacity-50">
+              {frontmatter.description}
+            </blockquote>
+          )
+        }
+        {
+          frontmatter.image?.url && (
+            <figure class="w-full md:h-[240px]">
+              <img
+                class="object-fit h-full w-full md:aspect-auto"
+                src={frontmatter.image.url}
+                alt={frontmatter.image.alt}
+              />
+            </figure>
+          )
+        }
+        <slot />
+      </div>
+    </div>
   </div>
 </BaseLayout>
-
-<style></style>

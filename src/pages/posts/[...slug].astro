@@ -1,20 +1,37 @@
 ---
 import { getCollection, render } from "astro:content";
+import slugify from "slugify";
+import type { GetStaticPaths } from "astro";
+
 import PostLayout from "../../layouts/PostLayout.astro";
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
-}
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+  const headings = await Promise.all(
+    posts.map(async (post) => {
+      const data = await render(post);
+      return data.headings;
+    }),
+  );
+
+  return posts.map((entry, index) => ({
+    params: { slug: slugify(entry.data.title.toLowerCase()) },
+    props: { entry, headings: headings[index] },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry, headings } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(entry);
 ---
 
-<PostLayout frontmatter={post.data}>
+<!-- <PostLayout frontmatter={entry} headings={headings}> -->
+<PostLayout
+  {...entry.data}
+  headings={headings}
+  body={entry.body}
+  minutesRead={remarkPluginFrontmatter.minutesRead}
+>
   <Content />
 </PostLayout>
 
