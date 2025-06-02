@@ -1,6 +1,7 @@
 import { OGImageRoute } from "astro-og-canvas";
 import { getCollection } from "astro:content";
 import slugify from "slugify";
+// import { generateRandomString } from "../../utils/helpers";
 
 // import { removeTags } from "../../utils/helpers";
 
@@ -8,7 +9,9 @@ export const prerender = true;
 const blogs = await getCollection("blog");
 const pages = Object.fromEntries(
   blogs.map(({ id, data }) => [
-    id,
+    // I initially have id as a param as well
+    // id,
+    `${slugify(data.title).toLowerCase()}`,
     { data, slug: slugify(data.title).toLowerCase() },
   ]),
 );
@@ -37,19 +40,19 @@ export const { getStaticPaths, GET } = OGImageRoute({
   getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
     title: data.title,
     description: data.description ? data.description : "",
-    fonts: ["sans-serif"],
+    // fonts: ["sans-serif"],
     font: {
       title: {
         size: 44,
         lineHeight: 1.3,
-        families: ["sans-serif"],
+        // families: ["sans-serif"],
         weight: "Bold",
       },
       description: {
         size: 30,
         lineHeight: 1.6,
         color: [115, 115, 115],
-        families: ["sans-serif"],
+        // families: ["sans-serif"],
         weight: "Normal",
       },
     },

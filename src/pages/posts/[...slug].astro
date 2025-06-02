@@ -4,6 +4,7 @@ import slugify from "slugify";
 import type { GetStaticPaths } from "astro";
 
 import PostLayout from "../../layouts/PostLayout.astro";
+// import {generateRandomString} from '../../utils/helpers.ts'
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
@@ -16,7 +17,7 @@ export const getStaticPaths = (async () => {
   );
 
   return posts.map((entry, index) => ({
-    params: { slug: slugify(entry.data.title.toLowerCase()) },
+    params: { slug: `${slugify(entry.data.title.toLowerCase())}` },
     props: { entry, headings: headings[index] },
   }));
 }) satisfies GetStaticPaths;
@@ -32,6 +33,7 @@ const baseUrl = import.meta.env.DEV
 const { slug, title: pageTitle, description } = entry.data;
 
 const ogImage = new URL(`/open-graph/${slug}.png`, baseUrl).toString();
+// const ogImage = new URL(`/open-graph/${entry.id}.png`, baseUrl).toString();
 ---
 
 <!-- <PostLayout frontmatter={entry} headings={headings}> -->

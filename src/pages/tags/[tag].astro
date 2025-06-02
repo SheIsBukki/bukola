@@ -5,6 +5,7 @@ import slugify from "slugify";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogCard from "../../components/BlogCard.astro";
+// import { generateRandomString } from "../../utils/helpers";
 
 export const getStaticPaths = (async () => {
   const allPosts = await getCollection("blog");
