@@ -1,12 +1,7 @@
 ---
-const { title, url, html, pubDate, description } = Astro.props;
+import { removeTags } from "../utils/helpers.ts";
 
-function removeTags(htmlContent: string | undefined) {
-  if (htmlContent === null || htmlContent === "") return false;
-  else htmlContent = htmlContent?.toString();
-
-  return htmlContent?.replace(/(<([^>]+)>)/gi, "");
-}
+const { title, url, html, pubDate, description, minutesRead } = Astro.props;
 ---
 
 <div class="">
@@ -25,7 +20,7 @@ function removeTags(htmlContent: string | undefined) {
         {new Date(pubDate).toDateString()}
       </span>
       <span class="">&bull;</span>
-      <span class="">8 minutes read</span>
+      <span class="">{minutesRead}</span>
     </div>
 
     {

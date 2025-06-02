@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
+
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogCard from "../components/BlogCard.astro";
 import Hero from "../components/Hero.astro";
+import slugify from "slugify";
 
 const pageTitle = "Home";
 
@@ -35,8 +37,9 @@ const latestPosts = allPosts
           title={post.data.title}
           pubDate={post.data.pubDate}
           description={post.data.description}
-          html={post.rendered?.html}
-          url={`/posts/${post.id}`}
+          html={post.body}
+          url={`/posts/${slugify(post.data.title).toLowerCase()}`}
+          minutesRead={post?.rendered?.metadata?.frontmatter?.minutesRead}
         />
       ))
     }

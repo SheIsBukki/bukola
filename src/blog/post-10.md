@@ -1,5 +1,5 @@
 ---
-title: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"
+title: "Just Two Headings"
 pubDate: 2022-07-01
 description: "This is the first post of my new Astro blog."
 author: "Astro Learner"
@@ -10,6 +10,27 @@ tags: ["astro", "blogging", "learning in public", "testing"]
 ---
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
+
+## A Comprehensive Guide to Setting Up a Vue Project
+
+Vue.js is a flexible JavaScript framework that gives developers the freedom to build projects in different ways.
+
+You can start writing Vue code or set up a Vue project using any of these methods:
+
+In an HTML file with the content delivery network (CDN)
+Through the Vue CLI (Webpack/Babel)
+Scaffolding a Vue project with Vite
+
+## Quick Start: Writing Vue Code in an HTML File
+
+You can create an index.html file and add a CDN script to learn and get familiar with Vue syntax.
+
+Create a folder in your pc
+Create an index.html file
+Open the file, add the HTML boilerplate, and an empty <script> tag that will contain your Vue code block.
+Then add the following script:
+
+<script src=“https://unpkg.com/vue@3/dist/vue.global.js”></script>
 
 ## What I've accomplished
 
