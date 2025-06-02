@@ -23,6 +23,15 @@ export const getStaticPaths = (async () => {
 
 const { entry, headings } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(entry);
+
+//
+const baseUrl = import.meta.env.DEV
+  ? "http://localhost:4321"
+  : new URL(Astro.request.url).origin;
+
+const { slug, title: pageTitle, description } = entry.data;
+
+const ogImage = new URL(`/open-graph/${slug}.png`, baseUrl).toString();
 ---
 
 <!-- <PostLayout frontmatter={entry} headings={headings}> -->
@@ -30,6 +39,10 @@ const { Content, remarkPluginFrontmatter } = await render(entry);
   {...entry.data}
   headings={headings}
   body={entry.body}
+  ogImage={ogImage}
+  baseUrl={baseUrl}
+  pageTitle={pageTitle}
+  description={description}
   minutesRead={remarkPluginFrontmatter.minutesRead}
 >
   <Content />

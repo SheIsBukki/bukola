@@ -5,11 +5,14 @@ import Footer from "../components/Footer.astro";
 
 const { pageTitle, className, ogImage, description, ogType, baseUrl } =
   Astro.props;
-const baseLayoutUrl = import.meta.env.DEV
-  ? "http://localhost:4321"
-  : new URL(Astro.request.url).origin;
+// const baseLayoutUrl = import.meta.env.DEV
+//   ? "http://localhost:4321"
+//   : new URL(Astro.request.url).origin;
 ---
 
+<!-- content={baseUrl
+        ? baseUrl
+        : new URL(`/open-graph/${pageTitle}.png`, baseLayoutUrl).toString()} -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,12 +24,7 @@ const baseLayoutUrl = import.meta.env.DEV
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description?.slice(0, 140)} />
     <meta property="og:type" content={ogType} />
-    <meta
-      property="og:url"
-      content={baseUrl
-        ? baseUrl
-        : new URL(`/open-graph/${pageTitle}.png`, baseLayoutUrl).toString()}
-    />
+    <meta property="og:url" content={baseUrl} />
     <title>{pageTitle ? `${pageTitle} | Bukola` : "Bukola"}</title>
   </head>
   <body>

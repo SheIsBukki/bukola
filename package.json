@@ -7,9 +7,11 @@
     "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prettier": "exec prettier . --write"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.11",
     "@tailwindcss/vite": "^4.1.7",
     "astro": "^5.8.0",
     "astro-icon": "^1.1.5",

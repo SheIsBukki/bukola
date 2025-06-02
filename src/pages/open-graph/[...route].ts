@@ -1,11 +1,17 @@
 import { OGImageRoute } from "astro-og-canvas";
 import { getCollection } from "astro:content";
+import slugify from "slugify";
 
 // import { removeTags } from "../../utils/helpers";
 
 export const prerender = true;
 const blogs = await getCollection("blog");
-const pages = Object.fromEntries(blogs.map(({ id, data }) => [id, { data }]));
+const pages = Object.fromEntries(
+  blogs.map(({ id, data }) => [
+    id,
+    { data, slug: slugify(data.title).toLowerCase() },
+  ]),
+);
 
 export const { getStaticPaths, GET } = OGImageRoute({
   param: "route",
@@ -31,17 +37,27 @@ export const { getStaticPaths, GET } = OGImageRoute({
   getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
     title: data.title,
     description: data.description ? data.description : "",
+    fonts: ["sans-serif"],
     font: {
-      title: { size: 44, lineHeight: 1.3, weight: "Bold" },
+      title: {
+        size: 44,
+        lineHeight: 1.3,
+        families: ["sans-serif"],
+        weight: "Bold",
+      },
       description: {
         size: 30,
         lineHeight: 1.6,
         color: [115, 115, 115],
+        families: ["sans-serif"],
         weight: "Normal",
       },
     },
-    bgImage: { path: "./src/assets/hero-background.svg" },
+    // bgImage: { path: "./src/assets/bukola.png", fit: "contain" },
+    bgImage: { path: "./src/assets/hero-background.svg", fit: "contain" },
+    padding: 80,
     logo: {
+      // path: "./src/assets/bukola.png",
       path: "./src/assets/Untitled_Artwork.JPEG",
       size: [50, 60],
     },
