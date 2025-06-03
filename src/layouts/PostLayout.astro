@@ -32,15 +32,15 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
 >
   <div
     class={clsx({
-      "gap-8 md:grid md:grid-cols-4": frontmatter.headings.length > 0,
+      "gap-8 md:grid md:grid-cols-6": frontmatter.headings.length > 0,
     })}
   >
     <!--LARGE VIEWPORT TABLE OF CONTENT -->
     {
       frontmatter.headings.length > 0 && (
-        <div class="top-0 bottom-1/3 order-first my-auto py-2 align-middle text-balance md:sticky md:top-[5rem] md:col-span-1 md:mt-16 md:border-r-8 md:border-current/50 md:shadow md:drop-shadow-current">
+        <div class="top-0 bottom-1/3 order-first my-auto py-2 align-middle text-balance md:sticky md:top-[5rem] md:col-span-2 md:mt-16 md:border-r-8 md:border-current/50 md:shadow md:drop-shadow-current">
           <>
-            <h2 class="text-l mb-4 hidden text-center md:mb-8 md:block">
+            <h2 class="text-l mb-4 hidden text-center text-xl italic md:mb-8 md:block">
               Table of Contents
             </h2>
 
@@ -59,7 +59,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
     }
 
     <!-- BLOG CONTENT -->
-    <div class="md:order-1 md:col-span-3">
+    <div class="md:order-1 md:col-span-4">
       <div class="flex flex-col space-y-6">
         <h1 class="block text-2xl font-bold md:text-3xl">
           {frontmatter.title}
@@ -86,13 +86,11 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
         {
           frontmatter.headings.length > 0 && (
             <div class="p-4 shadow md:hidden">
-              <h2 class="text-l mb-4 block md:mb-8 md:hidden md:text-2xl">
-                Table of Contents
-              </h2>
+              <h2 class="text-l mb-4 block italic">Table of Contents</h2>
 
-              <ul class="flex max-h-[10rem] flex-col space-y-2 overflow-y-scroll text-sm opacity-80">
+              <ul class="flex max-h-[10rem] flex-col space-y-2 overflow-y-scroll text-sm opacity-80 shadow-[0px_-1px_0px_0px_rgba(0,0,0,0.08)]">
                 {frontmatter.headings.map((heading: MarkdownHeading) => (
-                  <li class="toc">
+                  <li class="toc small-viewport first-of-type:pt-3">
                     <a href={`#${heading.slug}`}>{heading.text}</a>
                   </li>
                 ))}
@@ -108,6 +106,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
             </blockquote>
           )
         }
+
         {
           frontmatter.image?.url && (
             <figure class="w-full md:h-[240px]">
