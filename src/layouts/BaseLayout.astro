@@ -5,20 +5,16 @@ import Footer from "../components/Footer.astro";
 
 const { pageTitle, className, ogImage, description, ogType, baseUrl } =
   Astro.props;
-// const baseLayoutUrl = import.meta.env.DEV
-//   ? "http://localhost:4321"
-//   : new URL(Astro.request.url).origin;
 
-const canonicalURL = new URL(Astro.url.pathname, "https://bukola.pages.dev");
 // const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 // const generalOgImage = new URL(`/open-graph/${pageTitle}.png`, baseUrl).toString();
+  
 const generalOgImage = new URL(
-  `/open-graph/${pageTitle}.png`,
-  canonicalURL,
+  `/open-graph/${new URL(Astro.url.pathname)}.png`,
+  baseUrl,
 ).toString();
 ---
 
-<!-- <meta property="og:url" content={baseUrl} /> -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -37,7 +33,7 @@ const generalOgImage = new URL(
       content={description ? description?.slice(0, 140) : pageTitle}
     />
     <meta property="og:type" content={ogType ? `${ogType}` : "Web page"} />
-    <meta property="og:url" content={baseUrl ? `${baseUrl}` : canonicalURL} />
+    <meta property="og:url" content={baseUrl} />
     <title>{pageTitle ? `${pageTitle} | Bukola` : "Bukola"}</title>
   </head>
   <body>
