@@ -90,7 +90,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
                 Table of Contents
               </h2>
 
-              <ul class="flex max-h-[10rem] flex-col space-y-2 overflow-auto text-sm opacity-80 md:hidden">
+              <ul class="flex max-h-[10rem] scroll-auto flex-col space-y-2 overflow-auto text-sm opacity-80 md:hidden">
                 {frontmatter.headings.map((heading: MarkdownHeading) => (
                   <li class="toc">
                     <a href={`#${heading.slug}`}>{heading.text}</a>

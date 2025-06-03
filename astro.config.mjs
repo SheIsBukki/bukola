@@ -27,6 +27,7 @@ export default defineConfig({
     shikiConfig: {
       // theme: "catppuccin-latte",
       theme: "night-owl",
+      // theme: "monokai",
       // themes: {
       //   light: "catppuccin-latte",
       //   dark: "night-owl",
