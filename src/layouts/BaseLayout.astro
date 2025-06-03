@@ -7,12 +7,7 @@ const { pageTitle, className, ogImage, description, ogType, baseUrl } =
   Astro.props;
 
 // const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-// const generalOgImage = new URL(`/open-graph/${pageTitle}.png`, baseUrl).toString();
-
-const generalOgImage = new URL(
-  `/open-graph/${baseUrl}.png`,
-  // baseUrl,
-).toString();
+const generalOgImage = new URL(`/open-graph/${pageTitle}.png`, baseUrl).toString();
 ---
 
 <html lang="en">
