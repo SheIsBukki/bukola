@@ -8,6 +8,8 @@ const { pageTitle, className, ogImage, description, ogType, baseUrl } =
 // const baseLayoutUrl = import.meta.env.DEV
 //   ? "http://localhost:4321"
 //   : new URL(Astro.request.url).origin;
+
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!-- content={baseUrl
@@ -24,6 +26,7 @@ const { pageTitle, className, ogImage, description, ogType, baseUrl } =
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description?.slice(0, 140)} />
     <meta property="og:type" content={ogType} />
+    <!-- <meta property="og:url" content={canonicalURL} /> -->
     <meta property="og:url" content={baseUrl} />
     <title>{pageTitle ? `${pageTitle} | Bukola` : "Bukola"}</title>
   </head>

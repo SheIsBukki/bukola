@@ -10,8 +10,8 @@ const blogs = await getCollection("blog");
 const pages = Object.fromEntries(
   blogs.map(({ id, data }) => [
     // I initially have id as a param as well
-    // id,
-    `${slugify(data.title).toLowerCase()}`,
+    id,
+    // `${slugify(data.title).toLowerCase()}`,
     { data, slug: slugify(data.title).toLowerCase() },
   ]),
 );

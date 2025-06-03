@@ -17,7 +17,8 @@ export const getStaticPaths = (async () => {
   );
 
   return posts.map((entry, index) => ({
-    params: { slug: `${slugify(entry.data.title.toLowerCase())}` },
+    params: { slug: `${slugify(entry.data.title.toLowerCase())}`, id:entry.id },
+    // params: { slug: `${slugify(entry.data.title.toLowerCase())}` },
     props: { entry, headings: headings[index] },
   }));
 }) satisfies GetStaticPaths;
@@ -34,8 +35,8 @@ const { Content, remarkPluginFrontmatter } = await render(entry);
 
 const { slug, title: pageTitle, description } = entry.data;
 
-const ogImage = new URL(`/open-graph/${slug}.png`, baseUrl).toString();
-// const ogImage = new URL(`/open-graph/${entry.id}.png`, baseUrl).toString();
+// const ogImage = new URL(`/open-graph/${slug}.png`, baseUrl).toString();
+const ogImage = new URL(`/open-graph/${entry.id}.png`, baseUrl).toString();
 ---
 
 <!-- <PostLayout frontmatter={entry} headings={headings}> -->
