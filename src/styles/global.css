@@ -3,6 +3,30 @@
 /*---break---*/
 @custom-variant dark (&:is(.dark *));
 
+/* format("woff") format("ttf") */
+@font-face {
+  font-family: "Space_Grotesk";
+  src: url("/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nunito_Sans";
+  src: url("/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf");
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+/*Heading*/
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/Syne/Syne-VariableFont_wght.ttf");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -14,9 +38,11 @@ html {
   background-color: #fff;
   color: black;
   font-family: sans-serif;
+  font-family: "Space_Grotesk", "Nunito_Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 /*Dark/light toggle*/
@@ -35,6 +61,7 @@ body {
   max-width: 100ch;
   padding: 1rem;
   line-height: 1.5;
+  /*font-family: "Space_Grotesk", "Nunito_Sans", sans-serif;*/
 }
 
 .visually-hidden {
