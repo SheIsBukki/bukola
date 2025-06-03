@@ -29,7 +29,7 @@ const generalOgImage = new URL(`/open-graph/${pageTitle}.png`, baseLayoutUrl).to
       content={description ? description?.slice(0, 140) : pageTitle}
     />
     <meta property="og:type" content={ogType ? `${ogType}` : "Web page"} />
-    <meta property="og:url" content={baseUrl} />
+    <meta property="og:url" content={baseUrl ? baseUrl : baseLayoutUrl} />
     <title>{pageTitle ? `${pageTitle} | Bukola` : "Bukola"}</title>
   </head>
   <body>
