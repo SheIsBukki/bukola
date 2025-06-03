@@ -4,7 +4,6 @@ import slugify from "slugify";
 import type { GetStaticPaths } from "astro";
 
 import PostLayout from "../../layouts/PostLayout.astro";
-// import {generateRandomString} from '../../utils/helpers.ts'
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
@@ -17,8 +16,10 @@ export const getStaticPaths = (async () => {
   );
 
   return posts.map((entry, index) => ({
-    params: { slug: `${slugify(entry.data.title.toLowerCase())}`, id:entry.id },
-    // params: { slug: `${slugify(entry.data.title.toLowerCase())}` },
+    params: {
+      slug: `${slugify(entry.data.title.toLowerCase())}`,
+      id: entry.id,
+    },
     props: { entry, headings: headings[index] },
   }));
 }) satisfies GetStaticPaths;
@@ -31,7 +32,7 @@ const { Content, remarkPluginFrontmatter } = await render(entry);
 //   ? "http://localhost:4321"
 //   : new URL(Astro.request.url).origin;
 
-  const baseUrl = "https://bukola.pages.dev";
+const baseUrl = "https://bukola.pages.dev";
 
 const { slug, title: pageTitle, description } = entry.data;
 
@@ -39,7 +40,6 @@ const { slug, title: pageTitle, description } = entry.data;
 const ogImage = new URL(`/open-graph/${entry.id}.png`, baseUrl).toString();
 ---
 
-<!-- <PostLayout frontmatter={entry} headings={headings}> -->
 <PostLayout
   {...entry.data}
   headings={headings}

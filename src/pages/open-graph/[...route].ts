@@ -1,9 +1,6 @@
 import { OGImageRoute } from "astro-og-canvas";
 import { getCollection } from "astro:content";
 import slugify from "slugify";
-// import { generateRandomString } from "../../utils/helpers";
-
-// import { removeTags } from "../../utils/helpers";
 
 export const prerender = true;
 const blogs = await getCollection("blog");
@@ -56,8 +53,8 @@ export const { getStaticPaths, GET } = OGImageRoute({
         weight: "Normal",
       },
     },
-    // bgImage: { path: "./src/assets/bukola.png", fit: "contain" },
-    bgImage: { path: "./src/assets/hero-background.svg", fit: "contain" },
+    bgImage: { path: "./src/assets/bukola.png", fit: "contain" },
+    // bgImage: { path: "./src/assets/hero-background.svg", fit: "contain" },
     padding: 80,
     logo: {
       // path: "./src/assets/bukola.png",

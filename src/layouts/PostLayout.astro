@@ -1,21 +1,11 @@
 ---
 import type { MarkdownHeading } from "astro";
 import clsx from "clsx";
-// import slugify from "slugify";
 
 import BaseLayout from "./BaseLayout.astro";
 import { removeTags } from "../utils/helpers";
 
 const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
-
-// const baseUrl = import.meta.env.DEV
-//   ? "http://localhost:4321"
-//   : new URL(Astro.request.url).origin;
-
-// const ogImage = new URL(
-//   `/open-graph/${slugify(frontmatter.title).toLowerCase()}.png`,
-//   baseUrl,
-// ).toString();
 ---
 
 <BaseLayout

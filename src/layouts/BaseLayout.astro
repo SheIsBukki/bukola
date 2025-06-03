@@ -9,25 +9,34 @@ const { pageTitle, className, ogImage, description, ogType, baseUrl } =
 //   ? "http://localhost:4321"
 //   : new URL(Astro.request.url).origin;
 
-// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// const generalOgImage = new URL(`/open-graph/${pageTitle}.png`, baseUrl).toString();
+const generalOgImage = new URL(
+  `/open-graph/${pageTitle}.png`,
+  canonicalURL,
+).toString();
 ---
 
-<!-- content={baseUrl
-        ? baseUrl
-        : new URL(`/open-graph/${pageTitle}.png`, baseLayoutUrl).toString()} -->
+<!-- <meta property="og:url" content={baseUrl} /> -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/bukola.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="twitter:image" content={ogImage} />
+    <meta property="og:site_name" content="Bukola" />
+    <meta property="og:image" content={ogImage ? ogImage : generalOgImage} />
+    <meta
+      property="twitter:image"
+      content={ogImage ? ogImage : generalOgImage}
+    />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description?.slice(0, 140)} />
-    <meta property="og:type" content={ogType} />
-    <!-- <meta property="og:url" content={canonicalURL} /> -->
-    <meta property="og:url" content={baseUrl} />
+    <meta
+      property="og:description"
+      content={description ? description?.slice(0, 140) : pageTitle}
+    />
+    <meta property="og:type" content={ogType ? `${ogType}` : "Web page"} />
+    <meta property="og:url" content={baseUrl ? `${baseUrl}` : canonicalURL} />
     <title>{pageTitle ? `${pageTitle} | Bukola` : "Bukola"}</title>
   </head>
   <body>
