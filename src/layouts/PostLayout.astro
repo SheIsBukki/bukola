@@ -90,7 +90,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
                 Table of Contents
               </h2>
 
-              <ul class="flex max-h-[10rem] scroll-smooth flex-col space-y-2 overflow-y-scroll text-sm opacity-80 md:hidden">
+              <ul class="flex max-h-[10rem] flex-col space-y-2 overflow-y-scroll text-sm opacity-80">
                 {frontmatter.headings.map((heading: MarkdownHeading) => (
                   <li class="toc">
                     <a href={`#${heading.slug}`}>{heading.text}</a>
@@ -134,8 +134,20 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
   }
 
   ul {
-    overflow-y: scroll;
     counter-reset: list-count;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: #9775fa80;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #9775fa1a;
+    }
   }
 
   li {
