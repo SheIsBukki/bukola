@@ -53,8 +53,8 @@ export const { getStaticPaths, GET } = OGImageRoute({
         weight: "Normal",
       },
     },
-    bgImage: { path: "./src/assets/bukola.png", fit: "contain" },
-    // bgImage: { path: "./src/assets/hero-background.svg", fit: "contain" },
+    // bgImage: { path: "./src/assets/bukola.png", fit: "contain" }, //
+    bgImage: { path: "./src/assets/hero-background.svg", fit: "contain" }, // I will find a better png image to use here, svg for og image is meh
     padding: 80,
     logo: {
       // path: "./src/assets/bukola.png",
