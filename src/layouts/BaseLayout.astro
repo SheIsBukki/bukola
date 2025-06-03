@@ -10,8 +10,8 @@ const { pageTitle, className, ogImage, description, ogType, baseUrl } =
 // const generalOgImage = new URL(`/open-graph/${pageTitle}.png`, baseUrl).toString();
 
 const generalOgImage = new URL(
-  `/open-graph/${Astro.url.pathname}.png`,
-  baseUrl,
+  `/open-graph/${baseUrl}.png`,
+  // baseUrl,
 ).toString();
 ---
 
