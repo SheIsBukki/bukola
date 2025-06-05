@@ -6,7 +6,6 @@ import Footer from "../components/Footer.astro";
 const { pageTitle, className, ogImage, description, ogType, baseUrl } =
   Astro.props;
 
-// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const baseLayoutUrl = "https://bukola.pages.dev";
 const generalOgImage = new URL(`/open-graph/${pageTitle}.png`, baseLayoutUrl).toString();
 ---
