@@ -9,7 +9,6 @@ import BlogCard from "../../components/BlogCard.astro";
 import PaginationButton from "../../components/PaginationButton.astro";
 import AllTags from "../../components/AllTags.astro";
 import SearchFunctionality from "../../components/SearchFunctionality.astro";
-// import { generateRandomString } from "../../utils/helpers";
 
 const pageTitle = "Blog Page";
 
@@ -61,7 +60,8 @@ const { page } = Astro.props;
     <div class="md:col-span-4">
       <div class="mb-12 flex items-center gap-4">
         <h1 class="text-3xl italic">Blog Archive</h1>
-        <p class="text-[#9775fa]">
+
+        <p class="text-[#9775fa] transition duration-200 hover:scale-150">
           <a href="/rss.xml">
             <Icon name="tabler:rss" size="24" />
           </a>

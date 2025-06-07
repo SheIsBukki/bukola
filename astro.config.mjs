@@ -16,7 +16,7 @@ export default defineConfig({
     icon({
       include: { mdi: ["*"] },
     }),
-    pagefind(), // This should always be placed last so that all integrations run before it does
+    pagefind(), // This should always be placed last integration so that all integrations run before it does
   ],
   markdown: {
     remarkPlugins: [
@@ -25,13 +25,14 @@ export default defineConfig({
       // remarkPlugins: [ [remarkToc, { heading: "contents"} ] ],
     ],
     shikiConfig: {
-      // theme: "catppuccin-latte",
-      // theme: "night-owl",
-      // theme: "monokai",
-      themes: {
-        light: "catppuccin-latte",
-        dark: "night-owl",
-      },
+      theme: "night-owl",
     },
   },
 });
+
+// themes: {
+//   light: "catppuccin-latte",
+//   dark: "night-owl",
+// },
+// theme: "catppuccin-latte",
+// theme: "monokai",

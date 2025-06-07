@@ -2,12 +2,24 @@
 
 ---
 
-<div class="select-theme-wrapper relative">
-  <select name="theme-switcher" id="theme-switcher" class="text-2xl">
-    <option aria-labelledby="System" id="system" value="system"> 🖥️ </option>
-    <option aria-labelledby="Dark" class="" value="dark">☾ </option>
-    <option aria-labelledby="Light" value="light" class="">☀️ </option>
-  </select>
+<div class="select-theme-wrapper">
+  <label for="theme-switcher" class="">
+    <select
+      name="theme-switcher"
+      id="theme-switcher"
+      class="appearance-none rounded border-[0.5px] p-[2px] px-2 text-sm md:appearance-auto md:border-0 md:text-base md:hover:border-[0.5px]"
+    >
+      <option aria-labelledby="System" id="system" value="system" class="">
+        Auto
+      </option>
+      <option id="dark" aria-labelledby="Dark" class="" value="dark"
+        >Dark
+      </option>
+      <option id="light" aria-labelledby="Light" value="light" class=""
+        >Light
+      </option>
+    </select>
+  </label>
 </div>
 
 <style>
@@ -16,16 +28,15 @@
   }
 
   select {
-    width: 100%;
-    appearance: none;
-    outline: none;
+    /*appearance: none;*/
+    /*outline: none;*/
     cursor: pointer;
     transition: 200ms;
 
-    &:focus {
+    /*&:focus {
       outline: none;
       border: 0;
-    }
+    }*/
   }
 </style>
 

@@ -14,3 +14,11 @@ for (let i = 0; i < byte.length; i++) {
 }
 
 export const generateRandomString = randomString;
+
+export const regularDate = (dateValue: string | number | Date) =>
+  new Date(dateValue).toLocaleDateString("en-NG", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    weekday: "short",
+  });

@@ -1,22 +1,24 @@
 ---
 import { removeTags } from "../utils/helpers.ts";
+import { regularDate } from "../utils/helpers.ts";
 
 const { title, url, html, pubDate, description, minutesRead } = Astro.props;
 ---
 
 <div class="">
   <div class="mb-10 space-y-2">
-    <h2
-      class="w-fit text-lg hover:underline hover:decoration-wavy hover:decoration-from-font hover:underline-offset-2 md:text-xl"
-    >
-      <a href={url}>
+    <h2 class="w-fit text-lg md:text-xl">
+      <a
+        href={url}
+        class="title-after relative hover:underline hover:decoration-wavy hover:decoration-[.5px] hover:underline-offset-4"
+      >
         {title}
       </a>
     </h2>
 
     <div class="flex items-center space-x-2 text-sm opacity-80">
       <span>
-        {new Date(pubDate).toDateString()}
+        {regularDate(pubDate)}
       </span>
       <span class="">&bull;</span>
       <span class="">{minutesRead}</span>
@@ -35,3 +37,19 @@ const { title, url, html, pubDate, description, minutesRead } = Astro.props;
     }
   </div>
 </div>
+
+<style>
+  .title-after:hover {
+    &::after {
+      content: url("/src/assets/MdiLinkVariant.svg");
+      margin-inline-start: 4px;
+      position: absolute;
+      transition: 0.2s ease-in-out;
+    }
+  }
+</style>
+
+<!-- THESE TAILWIND CLASSES DON'T WORK AS I WOULD LIKE
+
+hover:after:absolute hover:after:ms-4 hover:after:transition hover:after:duration-[0.2s] hover:after:ease-in-out hover:after:content-[url('/src/assets/MdiLinkVariant.svg')]
+ -->

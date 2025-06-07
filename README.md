@@ -1,3 +1,9 @@
+# Welcome to my personal technical blog: made with Astro!
+
+Welcome to my little internet abode. My name is Bukola. I am a technical writer, product manager, and frontend developer, finally sharing my thoughts in a blog.
+
+Writing about frontend development, product management, and content and technical writing experiences.
+
 # Astro Starter Kit: Minimal
 
 ```sh

@@ -4,7 +4,10 @@ import "../styles/global.css";
 import ThemeManager from "./ThemeManager.astro";
 ---
 
-<header style="" class="mb-6 md:mb-8">
+<header
+  style=""
+  class="mb-6 md:sticky md:top-0 md:mb-8 md:bg-[#f8f8ff] md:dark:bg-[#0f1011]"
+>
   <div class="flex items-center justify-between">
     <!-- logo -->
     <a class="" href="/">
@@ -19,10 +22,6 @@ import ThemeManager from "./ThemeManager.astro";
 </header>
 
 <style>
-  /*header {
-    margin-block: clamp(1.5rem, 5vmax, 5rem) clamp(1.5rem, 5vmax, 2rem);
-}*/
-
   @media (width<750px) {
   }
 </style>
