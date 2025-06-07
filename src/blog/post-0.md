@@ -15,9 +15,7 @@ Astro is a server-first JavaScript web framework for building content-driven web
 
 ### [So, Why Astro?](#so-why-astro)
 
-I stumbled on Astro about three weeks ago and after scanning the [website](https://astro.build), I decided to do the little blog tutorial in the docs. I realised that Astro had a familiar experience if you have some Vue.js or JSX knowledge. The main attraction for me was the seamless built-in markdown support. I would build this blog with either Vue.js, Next.js or Nuxt.js anyway, but it would have taken me more time to decide to do so. But Astro felt welcoming so here we are!
-
-The docs are quite comprehensive and will give you expected results. I'm eyeing 🌚 Next.js docs as I write this by the way...
+I stumbled on Astro about three weeks ago and after scanning the [website](https://astro.build), I decided to do the little blog tutorial in the docs. I realised that Astro had a familiar experience if you have some Vue.js or JSX knowledge. The docs are quite comprehensive and will give you expected results. I'm eyeing 🌚 Next.js docs as I write this by the way... The main attraction for me was the seamless built-in markdown support. I would build this blog with either Vue.js, Next.js or Nuxt.js anyway, but it would have taken me more time to decide to do so. But Astro felt welcoming so here we are!
 
 ## [My Process For Building My Personal Blog With Astro](#my-process-for-building-my-personal-blog-with-astro)
 

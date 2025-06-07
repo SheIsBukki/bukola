@@ -22,7 +22,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
     "md:w-full": frontmatter.headings.length > 0,
   })}
 >
-  <div
+  <article
     class={clsx({
       "gap-8 md:grid md:grid-cols-6": frontmatter.headings.length > 0,
     })}
@@ -116,7 +116,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
         </BlogSlot>
       </div>
     </div>
-  </div>
+  </article>
 </BaseLayout>
 
 <style>

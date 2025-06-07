@@ -1,6 +1,6 @@
 ---
 # layout: ../../layouts/MarkdownPostLayout.astro # Astro collection approach doesn't need this
-title: How to Build a Vue App To Show Your GitHub Repositories
+title: How to Build a Vue App To Show Your GitHub
 author: Astro Learner
 # description: "I had some challenges, but asking in the community really helped!"
 image:

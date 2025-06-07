@@ -5,12 +5,9 @@
 <script>
   const blogSlot = document.querySelector(".blog-slot") as HTMLElement;
   const slotAnchors = [...blogSlot.querySelectorAll("a")];
-  const slotAnchorHrefs = slotAnchors.map((anchor) => {
-  	// Todo: replace with my production url https://bukola.pages.dev
-    // if (!anchor.href.toString().includes("http://localhost:4321"))
+  slotAnchors.map((anchor) => {
     if (!anchor.href.toString().includes("https://bukola.pages.dev"))
       anchor.target = "_blank";
-    // return anchor;
   });
 </script>
 

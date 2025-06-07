@@ -126,8 +126,7 @@ body {
 }*/
 
 /*@media (prefers-color-scheme: dark) {
-  .astro-code,
-  .github-dark {
+  .astro-code {
     background-color: #24292e;
     color: #e1e4e8;
   }
