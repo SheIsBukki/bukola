@@ -70,6 +70,12 @@ html.dark {
   color: #e3e1db;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 .dark .nav-links a {
   color: #fff;
 }
@@ -126,7 +132,6 @@ body {
   }
 }
 
-/*@media (prefers-color-scheme: dark) {*/
 .dark .astro-code,
 .dark .astro-code span {
   color: var(--shiki-dark) !important;
@@ -135,5 +140,3 @@ body {
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
-/* Optional, if you also want font styles */
-/*}*/

@@ -1,10 +1,11 @@
 ---
+
 ---
 
 <script>
   const blogSlot = document.querySelector(".blog-slot") as HTMLElement;
 
-// ANCHOR TAG
+  // ANCHOR TAG
   const slotAnchors = [...blogSlot.querySelectorAll("a")];
   slotAnchors.map((anchor) => {
     if (!anchor.href.toString().includes("https://bukola.pages.dev")) {
@@ -13,7 +14,7 @@
     }
   });
 
-// INLINE CODE
+  // INLINE CODE
   const slotInlineCode = [...blogSlot.querySelectorAll("code")];
   slotInlineCode.map((code) => {
     if (code.parentElement?.tagName !== "PRE") {
@@ -21,46 +22,50 @@
     }
   });
 
-// CODE BLOCK 
-const slotCodeBlocks = Array.from(blogSlot.querySelectorAll('pre'))
+  // CODE BLOCK
+  const slotCodeBlocks = Array.from(blogSlot.querySelectorAll("pre"));
 
-const copyButtonHtml = `<span aria-role='copy'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3m9-9V7a2 2 0 0 0-2-2h-2m-2 12v-1a1 1 0 0 1 1-1h1m3 0h1a1 1 0 0 1 1 1v1m0 3v1a1 1 0 0 1-1 1h-1m-3 0h-1a1 1 0 0 1-1-1v-1"/><path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2"/></g></svg></span>`
+  const copyButtonHtml = `<span aria-role='copy'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3m9-9V7a2 2 0 0 0-2-2h-2m-2 12v-1a1 1 0 0 1 1-1h1m3 0h1a1 1 0 0 1 1 1v1m0 3v1a1 1 0 0 1-1 1h-1m-3 0h-1a1 1 0 0 1-1-1v-1"/><path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2"/></g></svg></span>`;
 
-for (let codeBlock of slotCodeBlocks) {
-let codeBlockWrapper = document.createElement('div')
-codeBlockWrapper.classList.add('code-block-wrapper')
-  
-  const copyButton = document.createElement('button')
-  copyButton.classList.add('copy-code-button')
-  copyButton.setAttribute('role','copy-code')
-  copyButton.setAttribute('type','button')
-  
-  copyButton.innerHTML =copyButtonHtml;
+  for (let codeBlock of slotCodeBlocks) {
+    let codeBlockWrapper = document.createElement("div");
+    codeBlockWrapper.classList.add("code-block-wrapper");
 
-  codeBlock.setAttribute('tabindex', '0')
-  codeBlock.appendChild(copyButton)
+    const copyButton = document.createElement("button");
+    copyButton.classList.add("copy-code-button");
+    copyButton.setAttribute("role", "copy-code");
+    copyButton.setAttribute("title", "Copy code");
+    copyButton.setAttribute("type", "button");
 
-  codeBlock.parentElement?.insertBefore(codeBlockWrapper, codeBlock)
-  codeBlockWrapper.appendChild(codeBlock)
+    copyButton.innerHTML = copyButtonHtml;
 
-  copyButton.addEventListener('click', async()=> {
-    await copyCode(codeBlock, copyButton)
-  })
-}
+    codeBlock.setAttribute("tabindex", "0");
+    codeBlock.appendChild(copyButton);
 
-async function copyCode(codeSnippet: HTMLElement, buttonElement: HTMLButtonElement) {
-let code = codeSnippet.querySelector('code')
-if (!code?.innerText) {
-  return
-}
+    codeBlock.parentElement?.insertBefore(codeBlockWrapper, codeBlock);
+    codeBlockWrapper.appendChild(codeBlock);
 
-let text = code.innerText
+    copyButton.addEventListener("click", async () => {
+      await copyCode(codeBlock, copyButton);
+    });
+  }
 
-await navigator.clipboard.writeText(text)
+  async function copyCode(
+    codeSnippet: HTMLElement,
+    buttonElement: HTMLButtonElement,
+  ) {
+    let code = codeSnippet.querySelector("code");
+    if (!code?.innerText) {
+      return;
+    }
 
-buttonElement.innerText=`Copied`
-setTimeout(()=>buttonElement.innerHTML=copyButtonHtml,800)
-}
+    let text = code.innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    buttonElement.innerText = `Copied`;
+    setTimeout(() => (buttonElement.innerHTML = copyButtonHtml), 800);
+  }
 </script>
 
 <article class="blog-slot text-pretty text-gray-900 dark:text-gray-100">
@@ -169,7 +174,8 @@ setTimeout(()=>buttonElement.innerHTML=copyButtonHtml,800)
   }
 
   .astro-code {
-    padding: 16px;
+    padding-inline: 16px;
+    padding-block: 30px 16px;
     font-size: 14px;
     margin-block: 24px;
     border-radius: 8px;
@@ -196,24 +202,23 @@ setTimeout(()=>buttonElement.innerHTML=copyButtonHtml,800)
   }
 
   .copy-code-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-  background-color: #dbdee3;
-  border-radius:0 8px 0 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    background-color: #dbdee3;
+    border-radius: 0 8px 0 8px;
 
-  &:hover {
-    background-color: #9775fa50;
-  }
-}
- 
-  .dark .copy-code-button {
-    background-color: #374151;
     &:hover {
-    background-color: #9775fa30;
+      background-color: #9775fa50;
     }
   }
 
+  .dark .copy-code-button {
+    background-color: #374151;
+    &:hover {
+      background-color: #9775fa30;
+    }
+  }
 </style>

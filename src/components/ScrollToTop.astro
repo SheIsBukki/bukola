@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button
+  type="button"
+  id="scroll-to-top"
+  title="Scroll to top"
+  class="cursor-pointer rounded-full bg-transparent p-3 text-current/50 hover:bg-gray-200 hover:text-current hover:dark:bg-gray-700"
+>
+  <Icon name="mdi:chevron-double-up" size="24" />
+</button>
+
+<script>
+  const scrollToTopButton = document.getElementById(
+    "scroll-to-top",
+  ) as HTMLButtonElement;
+
+  function showScrollButton() {
+    if (
+      document.body.scrollTop > document.body.scrollHeight / 4 ||
+      document.documentElement.scrollTop >
+        document.documentElement.scrollHeight / 4
+    ) {
+      scrollToTopButton.style.display = "block";
+    } else {
+      scrollToTopButton.style.display = "none";
+    }
+  }
+
+  window.onscroll = function () {
+    showScrollButton();
+  };
+
+  function scrollToTop() {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  scrollToTopButton?.addEventListener("click", scrollToTop);
+</script>
+
+<style>
+  #scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 1rem;
+    right: 0.4rem;
+  }
+</style>
