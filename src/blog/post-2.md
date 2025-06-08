@@ -14,13 +14,15 @@ It wasn't always smooth sailing, but I'm enjoying building with Astro. And, the 
 
 Sample code block
 
-```jsx
+```astro
 <div class="tags">
   Tags:
-  {frontmatter.tags.map((tag) => (
-    <span style="text-decoration: underline;text-underline-offset: 4px;">
-      {tag}
-    </span>
-  ))}
+  {
+    frontmatter.tags.map((tag) => (
+      <span style="text-decoration: underline;text-underline-offset: 4px;">
+        {tag}
+      </span>
+    ))
+  }
 </div>
 ```

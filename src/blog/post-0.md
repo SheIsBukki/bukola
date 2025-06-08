@@ -19,6 +19,57 @@ I stumbled on Astro about three weeks ago and after scanning the [website](https
 
 ## [My Process For Building My Personal Blog With Astro](#my-process-for-building-my-personal-blog-with-astro)
 
+I ran `pnpm create astro@latest` and went with the minimal setup because I generally prefer to scaffold new projects on a clean slate.
+
+```zsh showLineNumbers
+pnpm install
+pnpm astro add tailwind
+pnpm add --save-dev --save-exact prettier prettier-plugin-astro
+pnpm install -D prettier-plugin-tailwindcss
+```
+
+This is what my package.json file looks like at the time of writing this
+
+```json showLineNumbers
+"scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "postbuild": "pagefind --site dist",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prettier": "exec prettier . --write"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.11",
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^5.8.0",
+    "astro-icon": "^1.1.5",
+    "astro-og-canvas": "^0.7.0",
+    "astro-pagefind": "^1.8.3",
+    "canvaskit-wasm": "^0.40.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "mdast-util-to-string": "^4.0.0",
+    "reading-time": "^1.5.0",
+    "remark-toc": "^9.0.0",
+    "slugify": "^1.6.6",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/tabler": "^1.2.18",
+    "pagefind": "^1.3.0",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tw-animate-css": "^1.3.2"
+  }
+}
+```
+
+I had to add this `"prettier": "exec prettier . --write"` because I use Sublime Text and for some reason, prettier isn't formatting on save for this astro project specifically. I also didn't want to spend time trying to resolve it.
+
 <!--
 - **bold** and _italics._
 - *** will create a hr
