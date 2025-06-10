@@ -28,9 +28,9 @@ export default defineConfig({
       themes: {
         light: "catppuccin-latte",
         // dark: "night-owl",
-        dark: "ayu-dark",
+        // dark: "ayu-dark",
         // dark: "material-theme-ocean",
-        // dark: "tokyo-night",
+        dark: "tokyo-night",
         // dark: "catppuccin-mocha",
       },
     },
