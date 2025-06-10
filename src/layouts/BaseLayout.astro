@@ -13,7 +13,7 @@ const generalOgImage = new URL(
   baseLayoutUrl,
 ).toString();
 
-const site = new URL("rss.xml", 'http://localhost:4321')
+const site = new URL("rss.xml", baseLayoutUrl)
 ---
 
 <html lang="en">
@@ -28,6 +28,10 @@ const site = new URL("rss.xml", 'http://localhost:4321')
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content={description ? description?.slice(0, 140) : pageTitle}
+    />
     <meta property="og:site_name" content="Bukola" />
     <meta property="og:image" content={ogImage ? ogImage : generalOgImage} />
     <meta
