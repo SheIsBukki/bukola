@@ -7,7 +7,9 @@ import BlogSlot from "../components/BlogSlot.astro";
 import { removeTags } from "../utils/helpers";
 import { regularDate } from "../utils/helpers";
 
-const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
+const { post, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
+
+const filteredHeadings = frontmatter.headings.filter((heading:MarkdownHeading) => heading.depth <= 3);
 ---
 
 <BaseLayout
@@ -15,30 +17,31 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
     ? frontmatter.description.slice(0, 160)
     : removeTags(body)}
   ogImage={ogImage}
-  ogType={`article`}
+  ogType='article'
   baseUrl={baseUrl}
   pageTitle={frontmatter.title}
   className={clsx("container mx-auto w-11/12 md:w-10/12", {
-    "md:w-full": frontmatter.headings.length > 0,
+    "lg:w-full": frontmatter.headings.length > 0,
   })}
 >
   <article
     class={clsx({
-      "gap-8 md:grid md:grid-cols-6": frontmatter.headings.length > 0,
+      "gap-8 lg:grid md:grid-cols-6": frontmatter.headings.length > 0,
     })}
   >
+
     <!--LARGE VIEWPORT TABLE OF CONTENT -->
     {
-      frontmatter.headings.length > 0 && (
-        <div class="table-of-content top-0 bottom-1/3 order-first my-auto hidden py-2 align-middle text-pretty md:sticky md:top-[5rem] md:col-span-2 md:mt-16 md:block md:shadow md:drop-shadow-current">
+      filteredHeadings.length > 0 && (
+        <nav class="table-of-content top-0 bottom-1/3 order-first my-auto hidden py-2 align-middle text-pretty md:sticky md:top-[5rem] md:col-span-2 md:mt-16 lg:block md:shadow md:drop-shadow-current">
           <>
             <h2 class="text-l mb-4 hidden border-b-[0.005px] py-1 text-center text-xl italic md:mb-8 md:block">
               Table of Contents
             </h2>
 
-            <ul class="spce-y-2 px6 hidden flex-col overflow-auto text-sm opacity-80 md:flex md:justify-baseline lg:text-base">
-              {frontmatter.headings.map((heading: MarkdownHeading) => (
-                <li class="toc p-1 hover:bg-gray-200 hover:dark:bg-gray-700">
+            <ul role="list" class="spce-y-2 px6 hidden flex-col overflow-auto text-sm opacity-80 md:flex md:justify-baseline lg:text-base">
+              {filteredHeadings.map((heading: MarkdownHeading) => (
+                <li class="toc p-1 hover:bg-gray-200 hover:dark:bg-gray-800">
                   <a class="" href={`#${heading.slug}`}>
                     {heading.text}
                   </a>
@@ -46,7 +49,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
               ))}
             </ul>
           </>
-        </div>
+        </nav>
       )
     }
 
@@ -57,10 +60,18 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
           {frontmatter.title}
         </h1>
 
-        <div class="flex items-center gap-2 text-sm">
-          <span>{regularDate(frontmatter.pubDate)}</span>
-          <span>&bullet;</span>
-          <span>{frontmatter.minutesRead}</span>
+        <div class="space-y-1 text-sm">
+          <div class="flex items-center gap-2">
+            <span>{regularDate(frontmatter.pubDate)}</span>
+            <span>&bullet;</span>
+            <span>{frontmatter.minutesRead}</span>
+          </div>
+          <p>
+            By: <style></style><a
+              href="/about"
+              class="underline decoration-[#9775fa80] decoration-3 underline-offset-3 hover:decoration-[#9775fa]"
+              >{frontmatter.author}</a>
+          </p>
         </div>
 
         <!-- Tags -->
@@ -76,26 +87,29 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
 
         <!-- SMALL VIEWPORT TABLE OF CONTENTS -->
         {
-          frontmatter.headings.length > 0 && (
-            <div class="table-of-content p-4 shadow md:hidden">
-              <h2 class="text-l mb-4 block italic">Table of Contents</h2>
+          filteredHeadings.length > 0 && (
+            <nav>
+            <details open class="table-of-content pb-4  shadow lg:hidden">
+              <summary class="p-4 bg-gray-100 dark:bg-gray-900 text-l mb4 block italic">Table of Contents</summary>
 
-              <ul class="flex max-h-[10rem] flex-col space-y-2 overflow-y-scroll text-sm opacity-80 shadow-[0px_-1px_0px_0px_rgba(0,0,0,0.08)]">
-                {frontmatter.headings.map((heading: MarkdownHeading) => (
-                  <li class="toc small-viewport first-of-type:pt-3">
+              <ul role="list" class="flex px-4 max-h-[10rem] flex-col space-y-2 overflow-y-scroll text-sm opacity-80 shadow-[0px_-1px_0px_0px_rgba(0,0,0,0.08)]">
+                {filteredHeadings.map((heading: MarkdownHeading) => (
+                  <li class="toc small-viewport p-1 hover:bg-gray-200 hover:dark:bg-gray-800 first-of-type:mt-3">
                     <a href={`#${heading.slug}`}>{heading.text}</a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </details>
+            </nav>
+
           )
         }
 
         {
           frontmatter.description && (
-            <blockquote class="border-l-6 p-4 opacity-70 shadow backdrop-opacity-50">
+            <p class="border-l-6 p-4 opacity-70 shadow backdrop-opacity-50">
               {frontmatter.description}
-            </blockquote>
+            </p>
           )
         }
 
@@ -138,6 +152,7 @@ const { entry, body, baseUrl, ogImage, ...frontmatter } = Astro.props;
     &::-webkit-scrollbar-thumb {
       border-radius: 4px;
       background-color: #9775fa80;
+      /*background-color: #9775fa80;*/
     }
 
     &::-webkit-scrollbar-track {

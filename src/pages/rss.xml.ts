@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
-// import rss, { pagesGlobToRssItems } from "@astrojs/rss";
+
 import { getCollection } from "astro:content";
 import slugify from "slugify";
 
-const sites = "https://bukola.pages.dev";
+const site = "https://bukola.pages.dev";
 
 export async function GET() {
   const posts = await getCollection("blog");
@@ -11,8 +11,8 @@ export async function GET() {
   return rss({
     title: "Bukola | Blog",
     description: "My personal blog where I write about tech",
-    site: sites,
-    // items: await pagesGlobToRssItems(import.meta.glob("./**/*.md")),
+    site: site,
+
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,

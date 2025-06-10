@@ -8,37 +8,40 @@ import PostLayout from "../../layouts/PostLayout.astro";
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
 
-  const headings = await Promise.all(
-    posts.map(async (post) => {
-      const data = await render(post);
-      return data.headings;
-    }),
-  );
+// I FEEL LIKE THERE'S NO NEED TO MAP THROUGH TWICE WHEN I CAN DO IT ONCE
+  // const headings = await Promise.all(
+  //   posts.map(async (post) => {
+  //     const data = await render(post);
+  //     return data.headings;
+  //   }),
+  // );
 
-  return posts.map((entry, index) => ({
+  return posts.map((post, index) => ({
     params: {
-      slug: `${slugify(entry.data.title.toLowerCase())}`,
-      id: entry.id,
+      slug: `${slugify(post.data.title.toLowerCase())}`,
+      id: post.id,
     },
-    props: { entry, headings: headings[index] },
+    props: { post, headings: post?.rendered?.metadata?.headings },
+    // props: { post, headings: headings[index] },
   }));
 }) satisfies GetStaticPaths;
 
-const { entry, headings } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await render(entry);
+const { post } = Astro.props;
+
+const { Content, remarkPluginFrontmatter, headings } = await render(post);
 
 const baseUrl = "https://bukola.pages.dev";
 
-const { slug, title: pageTitle, description } = entry.data;
+const { slug, title: pageTitle, description } = post.data;
 
 // const ogImage = new URL(`/open-graph/${slug}.png`, baseUrl).toString();
-const ogImage = new URL(`/open-graph/${entry.id}.png`, baseUrl).toString();
+const ogImage = new URL(`/open-graph/${post.id}.png`, baseUrl).toString();
 ---
 
 <PostLayout
-  {...entry.data}
+  {...post.data}
   headings={headings}
-  body={entry.body}
+  body={post.body}
   ogImage={ogImage}
   baseUrl={baseUrl}
   pageTitle={pageTitle}
