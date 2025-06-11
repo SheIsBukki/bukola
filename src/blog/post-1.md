@@ -340,25 +340,6 @@ I'm also considering the idea of tracking performance. I'm familiar with Umami, 
 
 - Optimisation
 
-At the time of writing this, SEO and accessiblity need improvement, given these PageSpeed Insights and Lighthouse reports.
-
-<figure>
-  <img src="/src/assets/blog/post-0/lighthouse-desktop.png" alt="Lightouse report for desktop"/>
-<figcaption>Lighthouse report for desktop</figcaption>
-</figure>
-<figure>
-  <img src="/src/assets/blog/post-0/lighthouse-mobile.png" alt="Lighthouse report for mobile"/>
-<figcaption>Lighthouse report for mobile</figcaption>
-</figure>
-<figure>
-  <img src="/src/assets/blog/post-0/pagespeed-desktop.png" alt="PageSpeed Insights for desktop"/>
-<figcaption>PageSpeed Insights for desktop</figcaption>
-</figure>
-<figure>
-  <img src="/src/assets/blog/post-0/pagespeed-mobile.png" alt="PageSpeed Insights for mobile"/>
-  <figcaption>PageSpeed Insights for mobile</figcaption>
-</figure>
-
 I will also optimise for screen readers. Currently Safari mobile skips the table of contents and headings when reading the blog posts. It also ignores the publication details—published date, reading time, and author's name.
 
 ## [Conclusion](#conclusion)
