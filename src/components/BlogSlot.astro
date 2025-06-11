@@ -3,90 +3,317 @@
 ---
 
 <script>
-function initialiseBlogSlot(argument) {
-  // body...
+  function initialiseBlogSlot() {
+    const blogSlot = document.querySelector(".blog-slot") as HTMLElement;
 
-
-  const blogSlot = document.querySelector(".blog-slot") as HTMLElement;
-
-  // ANCHOR TAG
-  const slotAnchors = [...blogSlot.querySelectorAll("a")];
-  slotAnchors.map((anchor) => {
-    if (!anchor.href.toString().includes("https://bukola.pages.dev")) {
-      anchor.target = "_blank";
-      anchor.classList.add("external-link");
-    }
-  });
-
-  // INLINE CODE
-  const slotInlineCode = [...blogSlot.querySelectorAll("code")];
-  slotInlineCode.map((code) => {
-    if (code.parentElement?.tagName !== "PRE") {
-      code.classList.add("inline-code");
-    }
-  });
-
-  // CODE BLOCK
-  const slotCodeBlocks = Array.from(blogSlot.querySelectorAll("pre"));
-
-  const copyButtonHtml = `<span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3m9-9V7a2 2 0 0 0-2-2h-2m-2 12v-1a1 1 0 0 1 1-1h1m3 0h1a1 1 0 0 1 1 1v1m0 3v1a1 1 0 0 1-1 1h-1m-3 0h-1a1 1 0 0 1-1-1v-1"/><path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2"/></g></svg></span>`;
-
-  for (let codeBlock of slotCodeBlocks) {
-    let codeBlockWrapper = document.createElement("div");
-    codeBlockWrapper.classList.add("code-block-wrapper");
-
-    // Code block copy button
-    const copyButton = document.createElement("button");
-    copyButton.classList.add("copy-code-button");
-    copyButton.setAttribute("title", "Copy code");
-    copyButton.setAttribute("type", "button");
-
-    copyButton.innerHTML = copyButtonHtml;
-
-    codeBlock.setAttribute("tabindex", "0");
-    codeBlock.appendChild(copyButton);
-
-    // Code block language
-    const codeBlockLanguage = document.createElement("span");
-    codeBlockLanguage.classList.add("code-block-lang");
-    codeBlockLanguage.innerText = codeBlock.dataset.language
-      ? codeBlock.dataset.language
-      : "";
-    codeBlock.insertBefore(codeBlockLanguage, copyButton);
-
-    codeBlock.parentElement?.insertBefore(codeBlockWrapper, codeBlock);
-    codeBlockWrapper.appendChild(codeBlock);
-
-    copyButton.addEventListener("click", async () => {
-      await copyCode(codeBlock, copyButton);
+    // ANCHOR TAG
+    const slotAnchors = [...blogSlot.querySelectorAll("a")];
+    slotAnchors.map((anchor) => {
+      if (!anchor.href.toString().includes("https://bukola.pages.dev")) {
+        anchor.target = "_blank";
+        anchor.classList.add("external-link");
+      }
     });
-  }
 
-  // Code block copy to clipboard function
-  async function copyCode(
-    codeSnippet: HTMLElement,
-    buttonElement: HTMLButtonElement,
-  ) {
-    let code = codeSnippet.querySelector("code");
-    if (!code?.innerText) {
-      return;
+    // INLINE CODE
+    const slotInlineCode = [...blogSlot.querySelectorAll("code")];
+    slotInlineCode.map((code) => {
+      if (code.parentElement?.tagName !== "PRE") {
+        code.classList.add("inline-code");
+      }
+    });
+
+    // CODE BLOCK
+    const slotCodeBlocks = Array.from(blogSlot.querySelectorAll("pre"));
+
+    const copyButtonHtml = `<span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><!-- Icon from Tabler Icons by Paweł Kuna - https://github.com/tabler/tabler-icons/blob/master/LICENSE --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3m9-9V7a2 2 0 0 0-2-2h-2m-2 12v-1a1 1 0 0 1 1-1h1m3 0h1a1 1 0 0 1 1 1v1m0 3v1a1 1 0 0 1-1 1h-1m-3 0h-1a1 1 0 0 1-1-1v-1"/><path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2"/></g></svg></span>`;
+
+    for (let codeBlock of slotCodeBlocks) {
+      let codeBlockWrapper = document.createElement("div");
+      codeBlockWrapper.classList.add("code-block-wrapper");
+
+      // Code block copy button
+      const copyButton = document.createElement("button");
+      copyButton.classList.add("copy-code-button");
+      copyButton.setAttribute("title", "Copy code");
+      copyButton.setAttribute("type", "button");
+
+      copyButton.innerHTML = copyButtonHtml;
+
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // Code block language
+      const codeBlockLanguage = document.createElement("span");
+      codeBlockLanguage.classList.add("code-block-lang");
+      codeBlockLanguage.innerText = codeBlock.dataset.language
+        ? codeBlock.dataset.language
+        : "";
+      codeBlock.insertBefore(codeBlockLanguage, copyButton);
+
+      codeBlock.parentElement?.insertBefore(codeBlockWrapper, codeBlock);
+      codeBlockWrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
     }
 
-    let text = code.innerText;
+    // Code block copy to clipboard function
+    async function copyCode(
+      codeSnippet: HTMLElement,
+      buttonElement: HTMLButtonElement,
+    ) {
+      let code = codeSnippet.querySelector("code");
+      if (!code?.innerText) {
+        return;
+      }
 
-    await navigator.clipboard.writeText(text);
+      let text = code.innerText;
 
-    buttonElement.innerText = "Copied";
-    setTimeout(() => (buttonElement.innerHTML = copyButtonHtml), 800);
+      await navigator.clipboard.writeText(text);
+
+      buttonElement.innerText = "Copied";
+      setTimeout(() => (buttonElement.innerHTML = copyButtonHtml), 800);
+    }
   }
 
-  }
-
-  document.addEventListener('DOMContentLoaded', initialiseBlogSlot)
+  document.addEventListener("DOMContentLoaded", initialiseBlogSlot);
 </script>
 
 <article class="blog-slot text-pretty text-gray-900 dark:text-gray-100">
   <slot />
 </article>
 
-<!-- <style is:global> </style> -->
+<style is:global>
+  /**/
+  /* I MOVED THE FOLLOWING RULESETS FROM THE BlogSlot COMPOONENT HERE */
+  /**/
+  /*ANCHOR TAG STYLING*/
+  .blog-slot a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: #9775fa80;
+    text-decoration-thickness: 3px;
+
+    &:hover {
+      text-decoration-color: #9775fa;
+      opacity: 1;
+    }
+  }
+
+  .blog-slot h2 > a,
+  .blog-slot h3 > a,
+  .blog-slot h4 > a,
+  .blog-slot h5 > a,
+  .blog-slot h6 > a {
+    text-decoration-color: unset;
+    text-decoration: none;
+    position: relative;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 0.5px;
+      text-decoration-color: unset;
+
+      &::after {
+        content: url("/src/assets/MdiLinkVariant.svg");
+        margin-inline-start: 4px;
+        position: absolute;
+        transition: 0.2s ease-in-out;
+      }
+    }
+  }
+
+  a.external-link {
+    position: relative;
+    &:hover {
+      &::after {
+        position: absolute;
+        content: url("/src/assets/TablerArrowUpRight.svg");
+        bottom: 0.36em;
+        right: -0.32em;
+      }
+    }
+  }
+
+  @media (width<330px) {
+    a.external-link {
+      position: static;
+      &:hover {
+        &::after {
+          position: static;
+          content: none;
+        }
+      }
+    }
+  }
+
+  /*HEADING (H2 - H6) STYLING*/
+  .blog-slot h2,
+  .blog-slot h3,
+  .blog-slot h4,
+  .blog-slot h5,
+  .blog-slot h6 {
+    font-family: "Nunito_Sans";
+    font-weight: bold;
+  }
+
+  .blog-slot h2:first-of-type {
+    margin-block: 0px 12px;
+  }
+
+  .blog-slot h2:not(:first-of-type),
+  .blog-slot h3 {
+    margin-block: 36px 12px !important;
+  }
+
+  .blog-slot h4,
+  .blog-slot h5,
+  .blog-slot h6 {
+    margin-block: 12px 8px;
+  }
+
+  .blog-slot h2 {
+    font-size: 24px;
+  }
+
+  .blog-slot h3 {
+    font-size: 20px;
+  }
+
+  /*PARAGRAPH*/
+  .blog-slot p:not(blockquote p) {
+    margin-block-end: 20px;
+  }
+
+  /*BLOCKQUOTE*/
+  .blog-slot blockquote {
+    margin-block: 16px;
+    border-left-width: 6px;
+    padding-inline: 16px 8px;
+    opacity: 0.8;
+    box-shadow: 0 1px 2px 1px rgb(0, 0, 0, 0.1);
+  }
+
+  .blog-slot blockquote p {
+    padding-block: 8px;
+  }
+
+  /*LIST STYLING*/
+  .blog-slot ul,
+  .blog-slot ol {
+    margin-block: 8px !important;
+    list-style-position: inside;
+  }
+
+  .blog-slot ul {
+    list-style-type: square;
+  }
+
+  .blog-slot ol {
+    list-style-type: decimal;
+  }
+
+  .blog-slot ol ul,
+  .blog-slot ul ul,
+  .blog-slot ol ol,
+  .blog-slot ul ol {
+    margin-block: 0.1em !important;
+    margin-inline-start: 1em !important;
+  }
+
+  .blog-slot ol ul,
+  .blog-slot ul ul {
+    list-style-type: "- ";
+  }
+
+  .blog-slot ol ol,
+  .blog-slot ul ol {
+    list-style-type: lower-roman;
+  }
+
+  /*SLOT IMAGES AND CAPTION*/
+  .blog-slot img {
+    margin-block: 16px;
+    border-radius: 4px;
+    background-color: transparent;
+    aspect-ratio: auto;
+    width: 100%;
+    box-shadow: 0px 0px 12px;
+    object-fit: contain;
+  }
+
+  .dark .blog-slot img {
+    box-shadow: none;
+  }
+
+  .blog-slot figcaption {
+    text-align: center;
+    margin-block-end: 24px;
+    font-size: 14px;
+  }
+
+  /*CODE BLOCK AND INLINE CODE STYLING*/
+  .astro-code {
+    padding-inline: 16px;
+    padding-block: 42px 16px;
+    font-size: 14px;
+    margin-block: 24px !important;
+    border-radius: 8px;
+  }
+
+  code.inline-code,
+  .dark code.inline-code {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .dark code.inline-code {
+    background-color: #374151;
+  }
+
+  code.inline-code {
+    background-color: #e5e7eb;
+  }
+
+  .code-block-wrapper {
+    position: relative;
+  }
+
+  .copy-code-button,
+  .code-block-lang {
+    padding: 0.25rem 1rem;
+    position: absolute;
+    top: 0;
+  }
+
+  .copy-code-button {
+    right: 0;
+    cursor: pointer;
+    /*background-color: #dbdee3;*/
+    background-color: transparent;
+
+    &:hover {
+      background-color: #9775fa50;
+    }
+  }
+
+  .dark .copy-code-button {
+    /*background-color: #374151;*/
+    background-color: transparent;
+    &:hover {
+      background-color: #9775fa50;
+    }
+  }
+
+  .code-block-lang {
+    width: 100%;
+    left: 0;
+    border-block-end: 0.5px solid;
+  }
+</style>
