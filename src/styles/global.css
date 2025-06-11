@@ -74,6 +74,12 @@ html.dark {
   html {
     scroll-behavior: auto;
   }
+  .border-animation::after {
+    transition: none;
+  }
+  .border-animation:hover::after {
+    transform: none;
+  }
 }
 
 .dark .nav-links a {
@@ -120,15 +126,6 @@ body {
 
   &:hover::after {
     transform: scaleX(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .border-animation::after {
-    transition: none;
-  }
-  .border-animation:hover::after {
-    transform: none;
   }
 }
 
