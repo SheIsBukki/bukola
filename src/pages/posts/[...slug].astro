@@ -8,7 +8,7 @@ import PostLayout from "../../layouts/PostLayout.astro";
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
 
-// I FEEL LIKE THERE'S NO NEED TO MAP THROUGH TWICE WHEN I CAN DO IT ONCE
+  // I FEEL LIKE THERE'S NO NEED TO MAP THROUGH TWICE WHEN I CAN DO IT ONCE
   // const headings = await Promise.all(
   //   posts.map(async (post) => {
   //     const data = await render(post);
