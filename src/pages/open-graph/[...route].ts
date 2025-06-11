@@ -36,7 +36,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
   getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
     title: data.title,
     description: data.description ? data.description : "",
-    fonts: ["./public/fonts/Syne/Syne-VariableFont_wght.ttf"],
+    fonts: ["./public/fonts/Syne/Syne-VariableFont_wght.woff2"],
     font: {
       title: {
         size: 44,

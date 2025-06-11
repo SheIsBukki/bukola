@@ -20,7 +20,13 @@
 /* format("woff") format("woff2") format("ttf") format("otf") */
 @font-face {
   font-family: "Space_Grotesk";
-  src: url("/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf");
+  src:
+    url("/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.woff2")
+      format("woff2"),
+    url("/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.woff")
+      format("woff"),
+    url("/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf")
+      format("truetype");
   font-weight: 300 700;
   font-style: normal;
   font-display: swap;
@@ -28,7 +34,11 @@
 
 @font-face {
   font-family: "Nunito_Sans";
-  src: url("/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf");
+  src:
+    url("/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.woff2")
+      format("woff2"),
+    url("/fonts/Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf")
+      format("truetype");
   font-weight: 200 900;
   font-display: swap;
 }
@@ -36,7 +46,10 @@
 /*Heading font*/
 @font-face {
   font-family: "Syne";
-  src: url("/fonts/Syne/Syne-VariableFont_wght.ttf");
+  src:
+    url("/fonts/Syne/Syne-VariableFont_wght.woff2") format("woff2"),
+    url("/fonts/Syne/Syne-VariableFont_wght.woff") format("woff"),
+    url("/fonts/Syne/Syne-VariableFont_wght.otf") format("opentype");
   font-weight: 400 800;
   font-display: swap;
 }
