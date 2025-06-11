@@ -249,7 +249,7 @@ Setting up the RSS feed is pretty easy following the [docs](https://docs.astro.b
 pnpm add @astrojs/rss
 ```
 
-You can validate your RSS feed using sites like [this](https://validator.w3.org/feed/).
+You can validate your RSS feed using sites like [this feed validator site](https://validator.w3.org/feed/).
 
 ### [DOM Manipulation](#dom-manipulation)
 
