@@ -3,6 +3,10 @@
 ---
 
 <script>
+function initialiseBlogSlot(argument) {
+  // body...
+
+
   const blogSlot = document.querySelector(".blog-slot") as HTMLElement;
 
   // ANCHOR TAG
@@ -75,6 +79,10 @@
     buttonElement.innerText = "Copied";
     setTimeout(() => (buttonElement.innerHTML = copyButtonHtml), 800);
   }
+
+  }
+
+  document.addEventListener('DOMContentLoaded', initialiseBlogSlot)
 </script>
 
 <article class="blog-slot text-pretty text-gray-900 dark:text-gray-100">
