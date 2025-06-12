@@ -174,7 +174,7 @@ pnpm install remark-toc
 
 However, I ended up using my custom code inspired by [Noah's article](https://noahflk.com/blog/astro-table-of-contents).
 
-Unlike Noah's approach where he mapped through all the posts to extract the headings, I extracted the headings from each post's rendered content like so;
+Unlike Noah's approach where he mapped through all the posts to extract the headings, I extracted the headings from each post's rendered content.
 
 ```ts
 // Noah's approach
@@ -354,6 +354,6 @@ This article is actually why I haven't experimented with different git-based CMS
 
 Astro docs are some of the most comprehensive docs I've read, no wonder its rapid adoption compared to some other relatively new JavaScript frameworks.
 
-**Finally**
+**Finally!**
 
-The repository for this blog will remain public indefinitely. If you want more comprehensive code-rich articles on front-end development, stay tuned!
+If you want more comprehensive code-rich articles on front-end development, stay tuned!

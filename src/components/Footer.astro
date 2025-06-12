@@ -1,33 +1,34 @@
 ---
-const socialLinks = [
-  { GitHub: "https://github.com/SheIsBukki" },
-  { LinkedIn: "https://www.linkedin.com/in/bukola-ogunleye-j/" },
-  { Bluesky: "https://bsky.app/profile/itsbukola.bsky.social" },
-];
+import { socialLinks } from "./../lib/SocialLinks.ts";
 ---
 
 <footer class="container mx-auto mt-12 w-11/12 py-4 md:w-10/12">
-  <a href="#" class="border-animation">Contact</a>
-
-  <hr class="border-0.5 my-4 border-dashed" />
-
-  <div class="flex-row-reverse items-center justify-between md:flex">
-    <div class="flex gap-2 space-x-3">
+  <div class="">
+    <div
+      class="spae-x-3 flex items-center justify-center gap-3 text-center md:justify-start md:text-start"
+    >
       {
-        socialLinks.map((socialLink) => (
-          <a
-            target="_blank"
-            href={`${Object.values(socialLink)}`}
-            class="border-animation"
-          >
-            {Object.keys(socialLink)}
-          </a>
-        ))
+        socialLinks.map((socialLink) => {
+          const [key, value] = Object.entries(socialLink)[0];
+          return (
+            <a target="_blank" href={value[0].url} class="border-animation">
+              {key}
+            </a>
+          );
+        })
       }
     </div>
 
-    <p class="mt-4 md:mt-0">
-      &COPY; {new Date(Date.now()).getFullYear()} Bukola. All rights reserved.
-    </p>
+    <hr class="border-0.5 my-3 border-dashed" />
+
+    <div
+      class="justify-between space-y-4 text-center text-xs opacity-75 md:flex md:text-sm"
+    >
+      <p class="">Made with Astro by Bukola Ogunleye</p>
+
+      <p class="mt-4 md:mt-0">
+        &COPY; {new Date(Date.now()).getFullYear()} Bukola. All rights reserved.
+      </p>
+    </div>
   </div>
 </footer>
