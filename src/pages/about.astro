@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
 
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -26,9 +25,9 @@ const pageTitle = "About";
     <section class="grid-cols-6 items-center gap-8 space-y-8 md:grid">
       <div class="col-span-2 space-y-4">
         <figure class="space-y-4">
-          <Image
+          <img
             class="aspect-square size-full overflow-hidden object-cover [clip-path:circle(50%)]"
-            src={bukolasAvatar}
+            src={bukolasAvatar.src}
             alt="A digital art image of Bukola Ogunleye"
           />
 
