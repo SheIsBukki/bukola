@@ -57,7 +57,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
     padding: 80,
     logo: {
       // path: "./src/assets/bukola.png",
-      path: "./src/assets/Untitled_Artwork.JPEG",
+      path: "./src/assets/bukolasAvatar.jpg",
       size: [50, 60],
     },
     quality: 100,
