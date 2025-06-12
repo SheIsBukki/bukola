@@ -1,0 +1,105 @@
+---
+const editors = [
+  { "Sublime Text": "daily driver" },
+  { WebStorm: "supporting editor" },
+  { Zed: "others" },
+  { "VS Code": "others" },
+];
+
+const editorThemes = [
+  {
+    "Sublime Text":
+      "a heavily customised Ayu-dark color scheme, and Gruvbox theme",
+  },
+  { WebStorm: "Nightfall" },
+  { Zed: "Nightowl (italics)" },
+  { "VS Code": "Tokyo night" },
+];
+
+const browsers = [
+  { Safari: "daily driver" },
+  { "Google chrome": "supporting browser" },
+  { Orion: "second supporting browser" },
+  { "Opera mini": "mainly for movies and tv shows" },
+];
+
+const devices = ["M1 14” MacBook Pro 2021, 16GB RAM", "iPhone 13 Pro"];
+const shell = ["Zsh", "Ohmyzsh"];
+const noteTaking = ["Apple Note app", "Paper notebooks and black ink gel pens"];
+---
+
+<section class="things-of-choice space-y-4 text-pretty">
+  <h3 class="mt-8 text-3xl font-black">Things of choice</h3>
+
+  <div class="">
+    <p class="">Editors</p>
+    <ul class="">
+      {
+        editors.map((editor) => (
+          <li class="">
+            {Object.keys(editor)}: {Object.values(editor)}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="">
+    <p>Editor Themes</p>
+    <ul class="">
+      {
+        editorThemes.map((theme) => (
+          <li class="">
+            {Object.keys(theme)}: {Object.values(theme)}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="">
+    <p>Browsers</p>
+    <ul class="">
+      {
+        browsers.map((browser) => (
+          <li class="">
+            {Object.keys(browser)}: {Object.values(browser)}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="">
+    <p>Devices</p>
+    <ul>
+      {devices.map((device) => <li>{device}</li>)}
+    </ul>
+  </div>
+
+  <div class="">
+    <p>Shell</p>
+    <ul>
+      {shell.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+
+  <div class="">
+    <p>Note taking</p>
+    <ul>
+      {noteTaking.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .things-of-choice p {
+    font-size: 20px;
+    margin-block-end: 0.5rem;
+    font-weight: bold;
+  }
+
+  .things-of-choice ul {
+    list-style: inside circle;
+  }
+</style>

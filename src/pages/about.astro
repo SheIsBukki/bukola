@@ -1,84 +1,139 @@
 ---
+import { Icon } from "astro-icon/components";
+
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Stack from "../components/Stack.astro";
+import ThingsOfChoice from "../components/ThingsOfChoice.astro";
+import { socialLinks } from "../lib/SocialLinks.ts";
 
 const pageTitle = "About";
-
-const stack = [
-  "Html",
-  "Css",
-  "JavaScript",
-  "Typescript",
-  "React",
-  "Vue",
-  "Nuxt",
-  "Next",
-  "Astro",
-  "Drizzle",
-  "Prisma",
-  "Sanity",
-  "prismic",
-  "Git/version control",
-  "Postgresql",
-  "Cloudflare",
-  "Vercel",
-  "Netlify",
-  "Supabase",
-  "Neon",
-  "Turso",
-  "Sqlite",
-  "Sql",
-  "Stripe",
-];
-const thingsOfChoice = [
-  { Device: ["M1 14”Macbook Pro", "iPhone 13 Pro"] },
-  {
-    Editor: [
-      { "Sublime text": "daily driver" },
-      { Webstorm: "supporting editor" },
-      { Zed: "Others" },
-      { Vscode: "Others" },
-    ],
-  },
-  {
-    "Editor theme": [
-      {
-        "Sublime text":
-          "a heavily customised ayu-dark color scheme, and gruvbox theme",
-      },
-      { Webstorm: "nightfall" },
-      { Zed: "nightowl (italics)" },
-      { Vscode: "tokyo night" },
-    ],
-  },
-  { Shell: ["Zsh", "Ohmyzsh"] },
-  { "Note taking": "Apple Note app" },
-  {
-    Browser: [
-      { Safari: "daily driver" },
-      { "Google chrome": "supporting browser" },
-      { Orion: "second supporting browser" },
-      { "Opera mini": "mainly for movies and tv shows" },
-    ],
-  },
-];
 ---
 
 <BaseLayout
   pageTitle={pageTitle}
   className="container mx-auto w-11/12 md:w-10/12"
 >
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quo in,
-    blanditiis minima iste nesciunt, similique voluptate ex beatae nemo, fugit
-    voluptates temporibus exercitationem incidunt perspiciatis et dignissimos
-    officia repellendus.
-  </p>
+  <div class="space-y-20">
+    <h1
+      class="offset-4 mb-8 border-b-6 border-[#9775fa] text-4xl font-black md:text-5xl"
+    >
+      About
+    </h1>
 
-  <p class="mt-8">Stack</p>
-  <ul class="flex flex-wrap items-center justify-center gap-2 text-balance">
-    {stack.map((item) => <li>{item}</li>)}
-  </ul>
+    <section class="grid-cols-6 items-center gap-8 space-y-8 md:grid">
+      <div class="col-span-2 space-y-4">
+        <figure class="space-y-4">
+          <img
+            class="aspect-square size-full overflow-hidden object-cover [clip-path:circle(50%)]"
+            src="/src/assets/Untitled_Artwork.JPEG"
+            alt=""
+          />
 
-  <p class="mt-8">Things of choice</p>
+          <figcaption class="text-center text-xl font-black">
+            Bukola Ogunleye
+          </figcaption>
+        </figure>
+
+        <div class="flex justify-center gap-3">
+          {
+            socialLinks.map((socialLink) => {
+              const [key, value] = Object.entries(socialLink)[0];
+
+              return (
+                <a
+                  class="opacity-50"
+                  href={value[0].url}
+                  title={key}
+                  target="_blank"
+                >
+                  <Icon name={`${value[0].icon}`} size="24" />
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
+
+      <div class="col-span-4 space-y-6 text-pretty">
+        <p>
+          Hey! I'm Bukola, a content writer turned technical writer, product
+          manager, and front-end developer.
+        </p>
+
+        <p>
+          I spend most of my days and nights learning and practising my skills,
+          and building and improving my projects. Thank goodness for insomnia,
+          am I right? I'm also kind of a perfectionist—I've scored 100/100
+          across performance, accessibility, SEO, and best practices on
+          Lighthouse.
+        </p>
+
+        <p>
+          I used to be a bookworm, reading every book I laid my hands on, but
+          now I enjoy running, working out, and blasting music on speakers. I'm
+          also kind of a cinephile: I've watched Casablanca (1942), Citizen Kane
+          (1941), The Wizard of Oz (1939), and my favourite ancient movie,
+          Metropolis (1927).
+        </p>
+
+        <p>
+          My purpose for creating this website is to share my thoughts. I want
+          to embrace the culture of #learning in public and #building in public.
+          My posts will include thoughts about my experiences, my learning
+          journey, and tutorials. Check the <a href="/posts">blog archive</a> for
+          all posts.
+        </p>
+
+        <p>Subscribe to the <a href="/rss.xml">RSS feed</a> for updates.</p>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <Stack />
+
+    <ThingsOfChoice />
+
+    <section class="text-cnter space-y-4 text-pretty">
+      <h3
+        class="offset-4 b8 mt-8 border-b-6 border-[#9775fa] text-3xl font-black"
+      >
+        Get in touch
+      </h3>
+
+      <p>
+        Want to take your online presence to the next level or bring your
+        digital ideas to life? I'd love to hear from you! I'm all ears for
+        collabs, consultations, or just a casual chat about front-end
+        development and all the cool stuff that comes with it.
+      </p>
+
+      <p>Let’s build something amazing together!</p>
+      <!-- <p>Get in touch through any of the methods below:</p> -->
+      <ul class="list-inside [list-style-type:square]">
+        <li>Find me on Bluesky or LinkedIn</li>
+      </ul>
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: #9775fa80;
+    text-decoration-thickness: 3px;
+
+    &:hover {
+      text-decoration-color: #9775fa;
+      opacity: 1;
+    }
+  }
+</style>
+
+<!-- 
+  Are you looking to elevate your online presence or bring your digital
+        ideas to life? I’d love to hear from you! Feel free to reach out for
+        collaboration, consultation, or just a friendly chat about all things
+        front-end development.
+ -->

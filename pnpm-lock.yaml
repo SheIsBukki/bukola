@@ -53,9 +53,18 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7
     devDependencies:
+      "@iconify-json/devicon":
+        specifier: ^1.2.28
+        version: 1.2.28
+      "@iconify-json/logos":
+        specifier: ^1.2.4
+        version: 1.2.4
       "@iconify-json/mdi":
         specifier: ^1.2.3
         version: 1.2.3
+      "@iconify-json/simple-icons":
+        specifier: ^1.2.38
+        version: 1.2.38
       "@iconify-json/tabler":
         specifier: ^1.2.18
         version: 1.2.18
@@ -399,10 +408,28 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  "@iconify-json/devicon@1.2.28":
+    resolution:
+      {
+        integrity: sha512-o6NovL2k+vd7amkQQ8XC6zpXQ8hyY7iKgv7RT8UHGXOW6kTpQuP7cEZ6ejOLcIRz3Z7s9+cCIcmPEPQ8yH2YdQ==,
+      }
+
+  "@iconify-json/logos@1.2.4":
+    resolution:
+      {
+        integrity: sha512-XC4If5D/hbaZvUkTV8iaZuGlQCyG6CNOlaAaJaGa13V5QMYwYjgtKk3vPP8wz3wtTVNVEVk3LRx1fOJz+YnSMw==,
+      }
+
   "@iconify-json/mdi@1.2.3":
     resolution:
       {
         integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==,
+      }
+
+  "@iconify-json/simple-icons@1.2.38":
+    resolution:
+      {
+        integrity: sha512-mvMeFQgVjoHanQE9Q7ihmriEXAorjLZW+crUgQspDjFpzWuQp2RZMTppl1MN6TQztMVTsNFgF6LDKsp+v1RYRg==,
       }
 
   "@iconify-json/tabler@1.2.18":
@@ -3951,7 +3978,19 @@ snapshots:
   "@esbuild/win32-x64@0.25.4":
     optional: true
 
+  "@iconify-json/devicon@1.2.28":
+    dependencies:
+      "@iconify/types": 2.0.0
+
+  "@iconify-json/logos@1.2.4":
+    dependencies:
+      "@iconify/types": 2.0.0
+
   "@iconify-json/mdi@1.2.3":
+    dependencies:
+      "@iconify/types": 2.0.0
+
+  "@iconify-json/simple-icons@1.2.38":
     dependencies:
       "@iconify/types": 2.0.0
 

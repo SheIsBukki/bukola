@@ -1,0 +1,54 @@
+---
+import { Icon } from "astro-icon/components";
+
+const stack = [
+  { HTML: ["tabler:brand-html5", "#e65100"] },
+  { CSS: ["tabler:brand-css3", "#2965f1"] },
+  { JavaScript: ["mdi:language-javascript", "#ffca28"] },
+  { TypeScript: ["mdi:language-typescript", "#007acc"] },
+  { Vue: ["mdi:vuejs", "#41b883"] },
+  { Nuxt: ["logos:nuxt-icon", "#00e676"] },
+  { Astro: ["simple-icons:astro", "#ff5d01"] },
+  { React: ["mdi:react", "#0288d1"] },
+  { Next: ["devicon:nextjs", "#fff"] },
+  { Git: ["mdi:git", "#f34f29"] },
+  { GitHub: ["mdi:github"] },
+  { Postgresql: ["logos:postgresql", "#336791"] },
+  { Sqlite: ["simple-icons:sqlite", "#0f7fcc"] },
+  { MongoDB: ["simple-icons:mongodb", "#01ec64"] },
+  { Drizzle: ["simple-icons:drizzle", "#4caf50"] },
+  { Prisma: ["simple-icons:prisma"] },
+  { Supabase: ["logos:supabase-icon", "#3ecf8e"] },
+  { Turso: ["simple-icons:turso", "#4FF8D2"] },
+  { TailwindCSS: ["mdi:tailwind", "#38bdf8"] },
+  { Bootstrap: ["simple-icons:bootstrap", "#6610f2"] },
+  { "ShadCN/UI": ["simple-icons:shadcnui"] },
+  { Sanity: ["devicon:sanity", "#f03e2f"] },
+  { Prismic: ["logos:prismic-icon"] },
+  { Netlify: ["simple-icons:netlify", "#05bdba"] },
+  { Cloudflare: ["logos:cloudflare-icon", "#f6821f"] },
+  { Vercel: ["simple-icons:vercel"] },
+];
+---
+
+<section class="space-y-5">
+  <h3 class="text-3xl font-black">Skills</h3>
+  <p class="text-center text-pretty">
+    Here are the frameworks, libraries, services, runtimes, and tools I have
+    experience using. This is not a complete list. I am constantly exploring
+    more technologies, and will keep updating this list.
+  </p>
+  <ul class="flex flex-wrap items-center justify-center gap-4 text-balance">
+    {
+      stack.map((item) => {
+        const [key, [iconName, iconColour]]: string[] = Object.entries(item)[0];
+        return (
+          <li class="flex items-center gap-1">
+            <Icon name={iconName} size="24" style={`color:${iconColour}`} />
+            <span class="">{key}</span>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>

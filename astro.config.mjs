@@ -26,14 +26,8 @@ export default defineConfig({
     ],
     shikiConfig: {
       themes: {
-        // light: "catppuccin-latte",
         light: "github-light-high-contrast",
-        // light: "one-light",
-        // dark: "night-owl",
-        // dark: "ayu-dark",
-        // dark: "material-theme-ocean",
         dark: "tokyo-night",
-        // dark: "catppuccin-mocha",
       },
     },
   },
