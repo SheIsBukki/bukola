@@ -4,7 +4,7 @@ import slugify from "slugify";
 
 export const prerender = true;
 const blogs = await getCollection("blog");
-const pages = Object.fromEntries(
+const blogPages = Object.fromEntries(
   blogs.map(({ id, data }) => [
     id,
     // encodeURIComponent(slugify(data.title).toLowerCase()),
@@ -14,28 +14,33 @@ const pages = Object.fromEntries(
 
 export const { getStaticPaths, GET } = OGImageRoute({
   param: "route",
-  pages,
-
-  // A collection of pages to generate images for.
-  // The keys of this object are used to generate the path for that image.
-  // In this example, we generate one image at `/open-graph/example.png`.
-  // pages: async () => {
-  //   const posts = await getCollection("blog");
-
-  //   return posts.reduce((acc, post) => ({
-  //     ...acc,
-  //     [post.id]: {
-  //       title: post.data.title || "Blog post",
-  //       description:
-  //         post.data.description || removeTags(post.body?.substring(0, 140)),
-  //     },
-  //   }));
-  // },
+  pages: {
+    // blogPages,
+    "/": {
+      title: "Bukola's Technical Blog",
+      description:
+        "Front-end engineer, technical writer, and product manager. This is my digital garden.",
+    },
+    about: {
+      title: "About Bukola's Technical Blog",
+      description:
+        "Front-end engineer, technical writer, and product manager. This is my digital garden.",
+    },
+    posts: {
+      title: "Blog Page | Bukola's Technical Blog",
+      description: "Here lies all blogposts written by Bukola Ogunleye.",
+    },
+    tags: {
+      title: "Tag Page | Bukola's Technical Blog",
+      description:
+        "Here lies all the tags and categories of the blogposts written by Bukola Ogunleye.",
+    },
+  },
 
   // For each page, this callback will be used to customize the OpenGraph image.
-  getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
-    title: data.title,
-    description: data.description ? data.description : "",
+  getImageOptions: (path, page) => ({
+    title: page.title,
+    description: page.description ? page.description : "",
     fonts: ["./public/fonts/Syne/Syne-VariableFont_wght.woff2"],
     font: {
       title: {
