@@ -33,9 +33,11 @@ export const getStaticPaths = (async () => {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const pathname = tag
+const description = `Tag: ${tag}`
 ---
 
-<BaseLayout pageTitle={tag} className="container mx-auto w-11/12 md:w-10/12">
+<BaseLayout pageTitle={tag} description={description} pathname={pathname} className="container mx-auto w-11/12 md:w-10/12">
   <h1 class="mb-8 text-3xl font-black italic md:text-5xl">
     Posts tagged with "{tag}"
   </h1>
