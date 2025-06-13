@@ -7,8 +7,8 @@ const blogs = await getCollection("blog");
 const pages = Object.fromEntries(
   blogs.map(({ id, data }) => [
     id,
-    // `${slugify(data.title).toLowerCase()}`,
-    { data, slug: slugify(data.title).toLowerCase() },
+    // encodeURIComponent(slugify(data.title).toLowerCase()),
+    { data, slug: encodeURIComponent(slugify(data.title).toLowerCase()) },
   ]),
 );
 
@@ -33,7 +33,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
   // },
 
   // For each page, this callback will be used to customize the OpenGraph image.
-  getImageOptions: (path: string, { data, slug }: (typeof pages)[string]) => ({
+  getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
     title: data.title,
     description: data.description ? data.description : "",
     fonts: ["./public/fonts/Syne/Syne-VariableFont_wght.woff2"],
