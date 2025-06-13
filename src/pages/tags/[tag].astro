@@ -33,7 +33,7 @@ export const getStaticPaths = (async () => {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-const pathname = tag;
+const pathname = `tags/${tag}`;
 const description = `Tag: ${tag}`;
 ---
 

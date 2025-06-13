@@ -17,7 +17,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
   pages,
 
   // For each page, this callback will be used to customize the OpenGraph image.
-  getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
+  getImageOptions: (_path: string, { data }: (typeof pages)[string]) => ({
     title: data.title,
     description: data.description ? data.description : "",
     fonts: ["./public/fonts/Syne/Syne-VariableFont_wght.woff2"],
@@ -36,8 +36,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
         weight: "Normal",
       },
     },
-    // bgImage: { path: "./src/assets/bukola.png", fit: "contain" }, //
-    bgImage: { path: "./src/assets/hero-background.svg", fit: "contain" }, // I will find a better png image to use here, svg for og image is meh
+    bgImage: { path: "./src/assets/hero-background.svg", fit: "contain" },
     padding: 80,
     logo: {
       // path: "./src/assets/bukola.png",
