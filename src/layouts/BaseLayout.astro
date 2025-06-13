@@ -43,10 +43,10 @@ const site = new URL("rss.xml", baseLayoutUrl);
       content={description ? description?.slice(0, 140) : pageTitle}
     />
     <meta property="og:site_name" content="Bukola's Technical Blog" />
-    <meta property="og:image" content={ogImage ? ogImage : bukolasAvatar} />
+    <meta property="og:image" content={ogImage ? ogImage : generalOgImage} />
     <meta
       property="twitter:image"
-      content={ogImage ? ogImage : bukolasAvatar}
+      content={ogImage ? ogImage : generalOgImage}
     />
     <meta property="og:title" content={pageTitle} />
     <meta

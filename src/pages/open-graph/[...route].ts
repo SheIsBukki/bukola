@@ -33,7 +33,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
   // },
 
   // For each page, this callback will be used to customize the OpenGraph image.
-  getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
+  getImageOptions: (path: string, { data, slug }: (typeof pages)[string]) => ({
     title: data.title,
     description: data.description ? data.description : "",
     fonts: ["./public/fonts/Syne/Syne-VariableFont_wght.woff2"],
