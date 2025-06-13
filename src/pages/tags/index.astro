@@ -3,10 +3,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import AllTags from "../../components/AllTags.astro";
 
 const pageTitle = "Tag Page";
+const pageDescription =
+  "Here lies all the tags and categories of the blogposts written by Bukola Ogunleye.";
+const pathname = "tags";
 ---
 
 <BaseLayout
   pageTitle={pageTitle}
+  description={pageDescription}
+  pathname={pathname}
   className="container mx-auto w-11/12 md:w-10/12"
 >
   <h1 class="mb-12 text-3xl font-black italic md:text-5xl">

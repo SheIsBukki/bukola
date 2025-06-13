@@ -4,12 +4,19 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
 
-const { pageTitle, className, ogImage, description, ogType, baseUrl } =
-  Astro.props;
+const {
+  pageTitle,
+  pathname,
+  className,
+  ogImage,
+  description,
+  ogType,
+  baseUrl,
+} = Astro.props;
 
 const baseLayoutUrl = "https://bukola.pages.dev";
 const generalOgImage = new URL(
-  `/open-graph/${pageTitle}.png`,
+  `/open-graph/${pathname}.png`,
   baseLayoutUrl,
 ).toString();
 
@@ -32,7 +39,7 @@ const site = new URL("rss.xml", baseLayoutUrl);
       name="description"
       content={description ? description?.slice(0, 140) : pageTitle}
     />
-    <meta property="og:site_name" content="Bukola" />
+    <meta property="og:site_name" content="Bukola's Technical Blog" />
     <meta property="og:image" content={ogImage ? ogImage : generalOgImage} />
     <meta
       property="twitter:image"

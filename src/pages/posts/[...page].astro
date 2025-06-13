@@ -11,6 +11,8 @@ import AllTags from "../../components/AllTags.astro";
 import SearchFunctionality from "../../components/SearchFunctionality.astro";
 
 const pageTitle = "Blog Page";
+const pageDescription = "Here lies all blogposts written by Bukola Ogunleye.";
+const pathname = "posts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allPosts = await getCollection("blog");
@@ -33,6 +35,8 @@ const { page } = Astro.props;
 
 <BaseLayout
   pageTitle={pageTitle}
+  description={pageDescription}
+  pathname={pathname}
   className="container mx-auto w-11/12 md:w-full"
 >
   <div class="gap-8 md:grid md:grid-cols-6">
