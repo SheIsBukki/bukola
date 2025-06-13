@@ -18,7 +18,7 @@ export const getStaticPaths = (async () => {
 
   return posts.map((post, index) => ({
     params: {
-      slug: `${slugify(post.data.title.toLowerCase())}`,
+      slug: slugify(post.data.title.toLowerCase()),
       id: post.id,
     },
     props: { post, headings: post?.rendered?.metadata?.headings },
@@ -34,7 +34,7 @@ const baseUrl = "https://bukola.pages.dev";
 
 const { title: pageTitle, description } = post.data;
 
-const ogImageSlug = `${slugify(post.data.title.toLowerCase())}`
+const ogImageSlug = encodeURIComponent(slugify(post.data.title.toLowerCase()))
 
 const ogImage = new URL(`/open-graph/${ogImageSlug}.png`, baseUrl).toString();
 // const ogImage = new URL(`/open-graph/${post.id}.png`, baseUrl).toString();
