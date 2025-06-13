@@ -21,7 +21,7 @@ const generalOgImage = new URL(
   baseLayoutUrl,
 ).toString();
 
-const baseLayoutOgImage = bukolasAvatar;
+const baseLayoutOgImage = bukolasAvatar.src;
 
 const site = new URL("rss.xml", baseLayoutUrl);
 ---
@@ -43,10 +43,10 @@ const site = new URL("rss.xml", baseLayoutUrl);
       content={description ? description?.slice(0, 140) : pageTitle}
     />
     <meta property="og:site_name" content="Bukola's Technical Blog" />
-    <meta property="og:image" content={ogImage ? ogImage : baseLayoutOgImage} />
+    <meta property="og:image" content={ogImage ? ogImage : bukolasAvatar} />
     <meta
       property="twitter:image"
-      content={ogImage ? ogImage : baseLayoutOgImage}
+      content={ogImage ? ogImage : bukolasAvatar}
     />
     <meta property="og:title" content={pageTitle} />
     <meta
@@ -57,7 +57,7 @@ const site = new URL("rss.xml", baseLayoutUrl);
     <meta property="og:url" content={baseUrl ? baseUrl : baseLayoutUrl} />
     <title>{pageTitle ? `${pageTitle} | Bukola` : "Bukola"}</title>
   </head>
-  
+
   <body>
     <Header />
 
