@@ -32,9 +32,11 @@ const { Content, remarkPluginFrontmatter, headings } = await render(post);
 
 const baseUrl = "https://bukola.pages.dev";
 
-const { slug, title: pageTitle, description } = post.data;
+const { title: pageTitle, description } = post.data;
 
-const ogImage = new URL(`/open-graph/${slug}.png`, baseUrl).toString();
+const ogImageSlug = `${slugify(post.data.title.toLowerCase())}`
+
+const ogImage = new URL(`/open-graph/${ogImageSlug}.png`, baseUrl).toString();
 // const ogImage = new URL(`/open-graph/${post.id}.png`, baseUrl).toString();
 ---
 
