@@ -16,7 +16,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
   param: "route",
   pages: {
     // blogPages,
-    "/": {
+    home: {
       title: "Bukola's Technical Blog",
       description:
         "Front-end engineer, technical writer, and product manager. This is my digital garden.",
