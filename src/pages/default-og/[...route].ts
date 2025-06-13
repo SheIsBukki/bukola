@@ -1,25 +1,35 @@
 import { OGImageRoute } from "astro-og-canvas";
-import { getCollection } from "astro:content";
-import slugify from "slugify";
 
 export const prerender = true;
-const blogs = await getCollection("blog");
-const pages = Object.fromEntries(
-  blogs.map(({ id, data }) => [
-    id,
-    // encodeURIComponent(slugify(data.title).toLowerCase()),
-    { data, slug: encodeURIComponent(slugify(data.title).toLowerCase()) },
-  ]),
-);
 
 export const { getStaticPaths, GET } = OGImageRoute({
   param: "route",
-  pages,
+  pages: {
+    home: {
+      title: "Bukola's Technical Blog",
+      description:
+        "Front-end engineer, technical writer, and product manager. This is my digital garden.",
+    },
+    about: {
+      title: "About Bukola's Technical Blog",
+      description:
+        "Front-end engineer, technical writer, and product manager. This is my digital garden.",
+    },
+    posts: {
+      title: "Blog Page | Bukola's Technical Blog",
+      description: "Here lies all blogposts written by Bukola Ogunleye.",
+    },
+    tags: {
+      title: "Tag Page | Bukola's Technical Blog",
+      description:
+        "Here lies all the tags and categories of the blogposts written by Bukola Ogunleye.",
+    },
+  },
 
   // For each page, this callback will be used to customize the OpenGraph image.
-  getImageOptions: (path: string, { data }: (typeof pages)[string]) => ({
-    title: data.title,
-    description: data.description ? data.description : "",
+  getImageOptions: (path, page) => ({
+    title: page.title,
+    description: page.description ? page.description : "",
     fonts: ["./public/fonts/Syne/Syne-VariableFont_wght.woff2"],
     font: {
       title: {
