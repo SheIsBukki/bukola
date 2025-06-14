@@ -11,7 +11,7 @@ export const { getStaticPaths, GET } = OGImageRoute({
         "Front-end engineer, technical writer, and product manager. This is my digital garden.",
     },
     about: {
-      title: "About Bukola's Technical Blog",
+      title: "About Page | Bukola's Technical Blog",
       description:
         "Front-end engineer, technical writer, and product manager. This is my digital garden.",
     },
