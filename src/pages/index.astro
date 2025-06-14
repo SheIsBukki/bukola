@@ -12,6 +12,7 @@ const pageTitle = "Home";
 const pageDescription =
   "Front-end engineer, technical writer, and product manager. This is my digital garden.";
 const pathname = "home";
+const ogTitle="Bukola's Technical Blog"
 
 const allPosts = await getCollection("blog");
 const latestPosts = allPosts
@@ -31,6 +32,7 @@ const latestPosts = allPosts
   pageTitle={pageTitle}
   description={pageDescription}
   pathname={pathname}
+  ogTitle={ogTitle}
   className="container mx-auto w-11/12 md:w-10/12"
 >
   <Hero />
