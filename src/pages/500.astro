@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+import ThemeManager from "../components/ThemeManager.astro";
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>500</title>
+  </head>
+  <body>
+    <main class="container mx-auto translate-y-1/2 space-y-8">
+      <span class="visually-hidden">
+        <ThemeManager />
+      </span>
+      
+      <p>{error instanceof Error ? error.message : "Unknown error"}</p>
+
+      <button
+        type="button"
+        class="rounded-full bg-gray-900 px-6 py-2 text-white dark:bg-gray-50 dark:text-black"
+        ><a href="/">Go to Homepage</a></button
+      >
+    </main>
+  </body>
+</html>

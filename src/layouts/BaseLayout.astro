@@ -46,7 +46,7 @@ const site = new URL("rss.xml", baseLayoutUrl);
       property="twitter:image"
       content={ogImage ? ogImage : generalOgImage}
     />
-    <meta property="og:title" content={ogTitle? ogTitle: pageTitle} />
+    <meta property="og:title" content={ogTitle ? ogTitle : pageTitle} />
     <meta
       property="og:description"
       content={description ? description?.slice(0, 140) : pageTitle}
